@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="apple-touch-icon" href="images/icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icon@2x.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icon-72@2x.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/icon-72.png">
+
+    <title>LA Flood Map</title>
+
+    <link href="floodmap_style/normalize.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="http://public.eden.lsuagcenter.com/_catalogs/masterpage/EDENBranding/css/cosmo-bootstrap.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://js.arcgis.com/3.12/esri/css/esri.css">
+
+    <!--<script type="text/javascript">djConfig = { parseOnLoad: true }</script>-->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="floodmap_javascript/ParishFloodLayersGaia.js"></script>
+    <script src="http://js.arcgis.com/3.12/"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            background-color: white;
+            color: #333333;
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            line-height: 1.25em;
+            margin: 0;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        #printMap_header {
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #ababab;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+            .title h1 {
+                font-weight: 400;
+                font-size: 32px;
+            }
+
+        .share-buttons {
+            text-align: right;
+            position: relative;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        #map {
+            margin-bottom: 2rem;
+            height: 30rem;
+            border: 6px solid #cdcdcd;
+        }
+
+
+        .table-data-source {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .table-data-layer {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            margin-left: 0.5rem;
+            background: #efefef;
+        }
+
+        .layers,
+        .points,
+        .point-tables {
+            font-size: 1.2rem;
+        }
+
+        .visible-layers li {
+            padding: 0;
+            border-left: none;
+        }
+
+            .visible-layers li span {
+                padding: 10px 15px;
+                display: inline-block;
+                border-color: inherit;
+            }
+
+        .table-data-layer,
+        .visible-layers span {
+            border-left: 5px solid #ababab;
+        }
+
+
+            .table-data-layer.effective,
+            .visible-layers li.effective {
+                border-left-color: rgb(0, 230, 255);
+            }
+
+            .table-data-layer.preliminary,
+            .visible-layers li.preliminary {
+                border-left-color: rgb(255, 115, 223);
+            }
+
+            .table-data-layer.historical,
+            .visible-layers li.historical {
+                border-left-color: #6a6a6a;
+            }
+
+        .visible-layers li.abfe {
+            border-left-color: rgb(255,0,0);
+        }
+
+        .table-data-layer.firm,
+        .visible-layers li.firm {
+            border-left-color: #3b3b3b;
+        }
+
+        .visible-layers li.bing {
+            border-left-color: #efefef;
+        }
+
+
+        section.main {
+            padding: 1.5rem 0;
+        }
+
+        section.disclaimer {
+            background-color: lightblue;
+            font-size: 1.2rem;
+            padding: 2rem 0;
+        }
+
+
+        /*print specific styles*/
+        @media print {
+
+            body {
+                font-family: Helvetica, Arial, sans-serif;
+            }
+
+
+
+            h1, h2, h3, h4, h5, h6 {
+                font-family: Helvetica, Arial, sans-serif;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+
+            #map-graphic {
+                width: 66.66666667%;
+                float: left;
+            }
+
+            #layers-and-points {
+                width: 33.33333333%;
+                float: left;
+            }
+        }
+    </style>
+
+
+    <!--Analytics code-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-43366216-1', 'lsuagcenter.com');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</head>
+
+<body>
+    <section class="header">
+        <div class="container">
+            <div id="printMap_header" class="row">
+                <div class="logo col-xs-6 col-md-3">
+                    <img src="images/agcenter-logo.gif" alt="LSU AgCenter Logo" />
+                </div>
+                <div class="share-buttons col-xs-6 col-md-3 pull-right">
+                    <input class="btn btn-sm btn-info" type="button" value="Email" onclick="Sendit();" />
+                    <input class="btn btn-sm btn-info" id="btnPrint" type="button" value="Print" onclick="window.print();" />
+                </div>
+                <div class="title col-xs-12 col-md-6">
+                    <h1>Louisiana Flood Map</h1>
+                    <h3 id="printTitle"></h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="container">
+            <div class="map-info row">
+                <div id="map-graphic" class="col-sm-8">
+                    <div id="map"></div>
+                </div>
+                <div id="layers-and-points" class="col-sm-4">
+                    <div id="layers" class="layers">
+                        <h4>Visible Layers</h4>
+                        <ul id="visibleLayers" class="list-group visible-layers"></ul>
+                    </div>
+                    <div id="points" class="points">
+                        <h4>Point Coordinates</h4>
+                        <table id="pointCoords" class="table table-bordered text-center">
+                            <thead>
+                                <tr class="active" style="font-weight:600;">
+                                    <td>Point #</td>
+                                    <td>Lat., Long.</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="point-info row">
+                <div class="col-md-12">
+                    <div id="point-tables" class="point-tables">
+
+                        <div id="tabledata">
+
+                        </div>
+
+                    </div>
+
+                    <ol class="footnotes">
+                        <li>
+                            <i><b>Ground Elevation</b> is provided by USGS&#39;s elevation web service which provides the best available data for the specified point. If unable to find elevation at the specified point, the service returns an extremely large, negative value (-1.79769313486231E+308).</i>
+                        </li>
+                        <li>
+                            <i><b>BWS</b> is provided by the LSU AgCenter&#39;s basic wind speed web service developed for the 2012 IRC building codes.</i>
+                        </li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="disclaimer">
+        <div class="container">
+            <div id="printMap_disclaimer" class="row">
+                <div class="col-md-12">
+                    <!--<h5>DISCLAIMER:</h5>-->
+                    <p>
+                        Floodplain data that is shown on this map is the same data that your flood
+                        plain administrator uses. This web product is not considered an official FEMA
+                        Digital Flood Insurance Rate Map (DFIRM). It is provided for information purposes
+                        only, and it is not intended for insurance rating purposes. Please contact your
+                        local floodplain administrator for more information or to view an official copy of the
+                        FIRM or DFIRM.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+
+        function Sendit() {
+            var url = document.URL;
+            var subject = "LA Flood Map - has been shared with you";
+            //var address = escape("");
+            var bodytext = "LA Flood Map Source: ";
+            //alert(url);
+          //bodytext += url;
+          //console.log("mailto:" + "?subject=" + subject + "&body=" + bodytext + encodeURIComponent(url));
+          // NEED TO MAKE SAME FIX TO WDTM CODE REPO
+            location.href = "mailto:" + "?subject=" + subject + "&body=" + bodytext + encodeURIComponent(url);
+        }
+    </script>
+
+    <!-- #region HandlebarsTemplates -->
+    <!--Point Coordinates Data Row-->
+    <script id="coord-data-row" type="text/x-handlebars-template">
+
+        <tr>
+            <td>{{index}}</td>
+            <td>{{lat}}, {{long}}</td>
+        </tr>
+
+    </script>
+
+    <!--Table Head template-->
+    <script id="table-head" type="text/x-handlebars-template">
+
+        <p class="table-data-source">
+            Flood information in this table is from the: <span>
+                <span class="table-data-layer {{class}}">{{name}}</span>
+            </span>
+        </p>
+
+    </script>
+
+    <!--Table Body template-->
+    <script id="table-body" type="text/x-handlebars-template">
+
+        <div class="table-responsive">
+            <table id="{{id}}-results" class="table table-bordered text-center">
+                <thead>
+                    <tr class="active" style="font-weight:600;">
+                        <td>Point</td>
+                        <td>Panel ID</td>
+                        <td>Flood Zone</td>
+                        <td>BFE</td>
+                        <td>Ground Elevation</td>
+                        <td>BWS('13)*</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </script>
+
+    <!--Table Data Row templates-->
+    <!--One for digital layers-->
+    <script id="table-data-row" type="text/x-handlebars-template">
+
+        <tr>
+            <td>{{index}}</td>
+            <td>{{ID}}<br />{{Date}}</td>
+            <td>{{zone}}</td>
+            <td>{{bfe}}</td>
+            <td>{{elevation}}</td>
+            <td>{{bws13}}</td>
+        </tr>
+
+    </script>
+    <!--One for paper layers-->
+    <script id="table-data-row-paper" type="text/x-handlebars-template">
+
+        <tr>
+            <td>{{index}}</td>
+            <td colspan="3">No digital data.</td>
+            <td>{{elevation}}</td>
+            <td>{{bws13}}</td>
+        </tr>
+
+    </script>
+
+    <!-- #endregion -->
+
+    <script src="floodmap_javascript/print.js?v=20150209"></script>
+</body>
+
+</html>

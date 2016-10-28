@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="apple-touch-icon" href="images/icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icon@2x.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icon-72@2x.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/icon-72.png">
+    <title>LA Floodmaps</title>
+
+    <style>
+
+body {
+font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+color: #222;
+}
+
+        h3 {
+        margin: 0px;
+        }
+
+        #colLeft {
+            width:380px;
+            height:auto;
+            float:left;
+            padding-right:20px;
+        }
+
+        
+        #colRight {
+            width:380px;
+            height:auto;
+            float:left;
+            padding-left:20px;
+        }
+
+        #colBottom {
+            width:800px;
+            height:auto;
+        }
+
+        #colBottom-left {
+            width:380px;
+            height:auto;
+            float:left;
+            padding-right:20px;
+        }
+
+        
+        #colBottom-right {
+            width:380px;
+            height:auto;
+            float:left;
+            padding-left:20px;
+        }
+
+
+        li {
+list-style: none;
+/*padding-left: 87px;*/
+padding-bottom: 16px;
+line-height: 14px;
+font-size: 11px;
+background-position: left top !Important;
+        }
+        ul {
+            padding: 0px;   
+        }
+
+        img {
+float: left;
+margin-right: 0px;
+-webkit-transform: scale(0.5);
+-moz-transform: scale(0.5);
+-ms-transform: scale(0.5);
+-o-transform: scale(0.5);
+transform: scale(0.5);
+margin-left: -15px;
+margin-top: -10px;
+        }
+
+
+input[type=button] {
+color: #fff;
+padding: 7px 11px 7px 11px;
+border: solid 1px #0CF;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 5px;
+-webkit-text-shadow: 1px 1px #00B6FF;
+-moz-text-shadow: 1px 1px #00B6FF;
+text-shadow: 1px 1px #00B6FF;
+font-weight: bold;
+font-size: 12px;
+background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+cursor: pointer;
+float: right;
+}
+
+    </style>
+
+
+
+
+</head>
+<body>
+
+
+<div style="width:800px; height:auto; margin-left:auto; margin-right:auto;">
+            <span style="width: 200px; float: right;">
+            <input id="btnPrint" type="button" value="Print" onclick="window.print();" />
+        </span>
+        <h2 style="margin-top:0px;">Legend</h2>
+
+    
+    <div id="colLeft">
+
+                <h3>Effective FIRM (Digital)</h3>
+                <ul>
+                    <li><img src="images/DFIRMlegendIcon2.png" />The Limit of Study line is used to indicate the terminus of a 1- percent-annual-chance floodplain of a stream or backwater area that has not been independently studied by detailed analyses, or of a stream that has been studied by detailed methods.</li>
+                    <li><img src="images/FIRMlegendIcon9.png" />Base Flood Elevation Line; Elevation in Feet*</li>
+                    <li><img src="images/DFIRMlegendIcon3.png" />1-percent-annual-chance Flood Hazard Area (Zones A, AE, AO, AH, AR, A99, V, and VE)</li>
+                    <li><img src="images/DFIRMlegendIcon8.png" />Floodway Area</li>
+                    <li><img src="images/notshaded.png" />Flood Zone X</li>
+                    <li><img src="images/notshaded.png" />0.2-percent-annual-chance Flood Hazard Area (shaded Zone X)</li>
+                    <li><img src="images/notshaded.png" />Flood Zone X: Area with Reduced Flood Risk due to Levee</li>
+                    <li><img src="images/DFIRMlegendIcon5.png" />Zone D Area Not Included</li>
+                    <li style="padding-left: 0;">*Referenced to the North American Vertical Datum of 1988.</li>
+
+                </ul>
+
+        </div>
+
+
+    <div id="colRight">
+
+                        <h3>Proposed FIRM (Digital)</h3>
+                <p style="font-style:italic;font-size: 11px;">Used for Preliminary FIRM and Future FIRM</p>
+                <ul>
+                    <li><img src="images/pDFIRMlegendIcon2.png" />The Limit of Study line is used to indicate the terminus of a 1- percent-annual-chance floodplain of a stream or backwater area that has not been independently studied by detailed analyses, or of a stream that has been studied by detailed methods.</li>
+                    <li><img src="images/FIRMlegendIcon9.png" />Base Flood Elevation Line; Elevation in Feet*</li>
+                    <li><img src="images/pDFIRMlegendIcon3.png" />1-percent-annual-chance Flood Hazard Area (Zones A, AE, AO, AH, AR, A99, V, and VE)</li>
+                    <li><img src="images/pDFIRMlegendIcon8.png" />Floodway Area</li>
+                    <li><img src="images/notshaded.png" />Flood Zone X</li>
+                    <li><img src="images/notshaded.png" />0.2-percent-annual-chance Flood Hazard Area (shaded Zone X)</li>
+                    <li><img src="images/notshaded.png" />Flood Zone X: Area with Reduced Flood Risk due to Levee</li>
+                    <li><img src="images/pDFIRMlegendIcon5.png" />Zone D Area Not Included</li>
+                    <li style="padding-left: 0;">*Referenced to the North American Vertical Datum of 1988.</li>
+
+
+                </ul>
+
+        </div>
+
+
+    <div id="colBottom">
+        <h3>FIRM (Paper, Scanned Grayscale)</h3>
+        <p style="font-style:italic;font-size: 11px;">May be an Effective FIRM or Historical FIRM</p>
+        <div id="colBottom-left">
+
+                <ul>
+                    <li><img src="images/FIRMlegendIcon1.png" />SPECIAL FLOOD HAZARD AREAS INUNDATED BY 100-YEAR FLOOD:
+				<ul style="margin-top: 30px;">
+                    <li>ZONE A - No base flood elevations determined.</li>
+                    <li>ZONE AE - Base flood elevation determined</li>
+                    <li>ZONE AH - Flood depths of 1 to 3 feet (usually areas of ponding); base flood elevations determined</li>
+                    <li>ZONE AO - Flood depths of 1 to 3 feet (usually sheet flow on sloping terrain); average depths determined. For areas of alluvial fan flooding; velocities also determined.</li>
+                    <li>ZONE A99 - To be protected from 100-year flood by federal flood protection system under construction; no base flood elevations determined.</li>
+                    <li>ZONE V - Coastal flood with velocity hazard (wave action); no base flood elevations determined.</li>
+                    <li>ZONE VE - Coastal flood with velocity hazard (wave action); base flood elevations determined.</li>
+                </ul>
+                    </li>
+                    <li><img src="images/FIRMlegendIcon2.png" />FLOODWAY AREAS IN ZONE AE</li>
+                    <li><img src="images/FIRMlegendIcon3.png" />OTHER FLOOD AREAS:
+				<ul style="margin-top: 30px;">
+                    <li>ZONE X - Areas of 500-year flood; or 100-year flood with average depths of less than 1 foot or with drainage areas less than 1 square mile; and areas protected by levees from 100-year flood.</li>
+                    <li>ZONE B - Areas of 500-year flood as listed on older maps.</li>
+                </ul>
+                    </li>
+
+</div>
+                    <div id="colBottom-right">
+
+
+                    <li><img src="images/FIRMlegendIcon4.png" />OTHER AREAS:
+				<ul style="margin-top: 30px;">
+                    <li>ZONE X - Areas determined to be outside 500-year floodplain.</li>
+                    <li>ZONE C - Areas determined to be outside 500-year floodplain as listed on older maps.</li>
+                    <li>ZONE D - Areas in whichflood hazards are undetermined.</li>
+                </ul>
+                    </li>
+                    <li><img src="images/FIRMlegendIcon5.png" />Floodplain Boundary</li>
+                    <li><img src="images/FIRMlegendIcon6.png" />Floodway Boundary</li>
+                    <li><img src="images/FIRMlegendIcon7.png" />Zone D Boundary</li>
+                    <li><img src="images/FIRMlegendIcon8.png" />Boundary Dividing Special Flood Hazard Zones.</li>
+                    <li><img src="images/FIRMlegendIcon9.png" />Base Flood Elevation Line; Elevation in Feet**</li>
+                    <li><img src="images/FIRMlegendIcon10.png" />Cross Section Line</li>
+                    <li><img src="images/FIRMlegendIcon11.png" />Base Flood Elevation in Feet Where Uniform Within Zone*</li>
+                    <li><img src="images/FIRMlegendIcon12.png" />Elevation Reference Mark</li>
+                    <li><img src="images/FIRMlegendIcon13.png" />Stream Distance Marker (shown at approximate 5000 foot intervals)</li>
+                    <li style="padding-left: 0;">**Referenced to the National Geodetic Vertical Datum of 1929 on older maps.</li>
+                </ul>
+
+                        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

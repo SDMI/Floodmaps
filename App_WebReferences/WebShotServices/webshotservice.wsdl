@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="WebShotService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="WebShotService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="WebShotService">
+      <s:element name="TakeWebShot">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MapUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TakeWebShotResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TakeWebShotResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TakeWebShotCustom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MapUrl" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DocWait" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageTimeOut" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MetaRefreshTimeout" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImageWait" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TakeWebShotCustomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TakeWebShotCustomResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TakeWebShotSoapIn">
+    <wsdl:part name="parameters" element="tns:TakeWebShot" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotSoapOut">
+    <wsdl:part name="parameters" element="tns:TakeWebShotResponse" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomSoapIn">
+    <wsdl:part name="parameters" element="tns:TakeWebShotCustom" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomSoapOut">
+    <wsdl:part name="parameters" element="tns:TakeWebShotCustomResponse" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotHttpGetIn">
+    <wsdl:part name="MapUrl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomHttpGetIn">
+    <wsdl:part name="MapUrl" type="s:string" />
+    <wsdl:part name="DocWait" type="s:string" />
+    <wsdl:part name="PageTimeOut" type="s:string" />
+    <wsdl:part name="MetaRefreshTimeout" type="s:string" />
+    <wsdl:part name="ImageWait" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotHttpPostIn">
+    <wsdl:part name="MapUrl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomHttpPostIn">
+    <wsdl:part name="MapUrl" type="s:string" />
+    <wsdl:part name="DocWait" type="s:string" />
+    <wsdl:part name="PageTimeOut" type="s:string" />
+    <wsdl:part name="MetaRefreshTimeout" type="s:string" />
+    <wsdl:part name="ImageWait" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TakeWebShotCustomHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="WebShotServiceSoap">
+    <wsdl:operation name="TakeWebShot">
+      <wsdl:input message="tns:TakeWebShotSoapIn" />
+      <wsdl:output message="tns:TakeWebShotSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <wsdl:input message="tns:TakeWebShotCustomSoapIn" />
+      <wsdl:output message="tns:TakeWebShotCustomSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebShotServiceHttpGet">
+    <wsdl:operation name="TakeWebShot">
+      <wsdl:input message="tns:TakeWebShotHttpGetIn" />
+      <wsdl:output message="tns:TakeWebShotHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <wsdl:input message="tns:TakeWebShotCustomHttpGetIn" />
+      <wsdl:output message="tns:TakeWebShotCustomHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WebShotServiceHttpPost">
+    <wsdl:operation name="TakeWebShot">
+      <wsdl:input message="tns:TakeWebShotHttpPostIn" />
+      <wsdl:output message="tns:TakeWebShotHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <wsdl:input message="tns:TakeWebShotCustomHttpPostIn" />
+      <wsdl:output message="tns:TakeWebShotCustomHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebShotServiceSoap" type="tns:WebShotServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TakeWebShot">
+      <soap:operation soapAction="WebShotService/TakeWebShot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <soap:operation soapAction="WebShotService/TakeWebShotCustom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebShotServiceSoap12" type="tns:WebShotServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TakeWebShot">
+      <soap12:operation soapAction="WebShotService/TakeWebShot" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <soap12:operation soapAction="WebShotService/TakeWebShotCustom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebShotServiceHttpGet" type="tns:WebShotServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="TakeWebShot">
+      <http:operation location="/TakeWebShot" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <http:operation location="/TakeWebShotCustom" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebShotServiceHttpPost" type="tns:WebShotServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="TakeWebShot">
+      <http:operation location="/TakeWebShot" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TakeWebShotCustom">
+      <http:operation location="/TakeWebShotCustom" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebShotService">
+    <wsdl:port name="WebShotServiceSoap" binding="tns:WebShotServiceSoap">
+      <soap:address location="http://gaia.agcenter.lsu.edu/webshot/webshotservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebShotServiceSoap12" binding="tns:WebShotServiceSoap12">
+      <soap12:address location="http://gaia.agcenter.lsu.edu/webshot/webshotservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebShotServiceHttpGet" binding="tns:WebShotServiceHttpGet">
+      <http:address location="http://gaia.agcenter.lsu.edu/webshot/webshotservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebShotServiceHttpPost" binding="tns:WebShotServiceHttpPost">
+      <http:address location="http://gaia.agcenter.lsu.edu/webshot/webshotservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

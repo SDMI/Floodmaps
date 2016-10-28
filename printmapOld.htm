@@ -1,0 +1,650 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>LA Flood Map</title>
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/dojo/dijit/themes/tundra/tundra.css" />
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/esri/css/esri.css" />
+
+    <script type="text/javascript">djConfig = { parseOnLoad: true }</script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.5compact"></script>
+
+    <script src="floodmap_javascript/ParishFloodLayersGaia.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+<!--    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+    <script src="floodmap_javascript/qunit.js"></script>
+    <script src="floodmap_javascript/jquery.shareemail.js"></script>-->
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, span, table {
+            font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+        }
+
+        input[type=button] {
+            color: #fff;
+            padding: 7px 11px 7px 11px;
+            border: solid 1px #0CF;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 5px;
+            -webkit-text-shadow: 1px 1px #00B6FF;
+            -moz-text-shadow: 1px 1px #00B6FF;
+            text-shadow: 1px 1px #00B6FF;
+            font-weight: bold;
+            font-size: 12px;
+            /* Old browsers */
+            background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+            /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+            /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* IE10+ */
+            background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+            /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+            cursor: pointer;
+        }
+
+        #printMap_header {
+            width: 802px;
+            height: 74px;
+            
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            #printMap_header h1 {
+                font-size: 24px;
+            }
+
+        #printTitle {
+            float: left;
+            font-size: 20px;
+            width: 100%;
+        }
+
+        #printLayer {
+            float: left;
+            font-size: 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        #map {
+            width: 802px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+
+        #printMap_disclaimer {
+            width: 802px;
+            margin-top: 20px;
+        }
+
+            #printMap_disclaimer h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            #printMap_disclaimer p {
+                margin-bottom: 20px;
+                font-size: 12px;
+            }
+
+        #btnPrint {
+            float: right;
+            top: 0px;
+            position: relative;
+        }
+
+        #resultDiv {
+            width: 782px;
+            text-align: left;
+            padding: 10px 10px 10px 10px;
+            border-left: solid 1px #000;
+            border-right: solid 1px #000;
+            border-bottom: solid 1px #000;
+            font-size: 10px;
+        }
+
+        #printMap_results {
+            width: 780px;
+            text-align: center;
+            font-size: small;
+            margin-bottom: 20px;
+        }
+
+            #printMap_results td {
+                width: 780px;
+                text-align: center;
+                padding: 2px;
+                border: solid 1px #000;
+                font-size: 10px;
+                padding: 5px;
+            }
+
+        .resultsHeader {
+            background-color: #333;
+            color: #fff;
+        }
+
+        b {
+            font-weight: 600;
+        }
+    </style>
+
+
+
+    <script type="text/javascript">
+        dojo.require("esri.map");
+        dojo.require("esri.virtualearth.VETiledLayer");
+        dojo.require("esri.tasks.query");
+        dojo.require("esri.tasks.QueryTask");
+        //dojo.require("esri.graphic");
+        //dojo.require("esri.layers.graphics");
+        //dojo.require("esri.tasks.geometry");
+        //dojo.require("esri.toolbars.draw");
+        //dojo.require("esri.layers.agstiled");
+        //dojo.require("esri.layers.agsdynamic");
+        //dojo.require("esri.toolbars.draw");
+        //dojo.require("esri.tasks.geometry");
+        var map, startExtent;
+        var BingMapsKey = 'AlduteqaR5NwBdOKa-xGt4mB-vQHrA7amfIi2qBDH154Km_k86Ot-6bOIfR3oXrR';
+        var layers = getQueryString('l');
+        var add_P_DFIRM = false;
+        var layername = "";
+        function Init() {
+            var layerType = layers.split(',');
+            var node = getQueryString('node');
+
+            //var startExtent = new esri.geometry.Extent({ "xmin": -10598845.56132645, "ymin": 3257577.620960132, "xmax": -9737858.874722457, "ymax": 3974251.198161751, "spatialReference": { "wkid": 102100} });
+            startExtent = new esri.geometry.Extent(parseFloat(getQueryString('XMin')), parseFloat(getQueryString('YMin')), parseFloat(getQueryString('XMax')), parseFloat(getQueryString('YMax')), new esri.SpatialReference({ wkid: 102100 }));
+
+            //map.setExtent(startExtent); extent:startExtent,
+
+            map = new esri.Map("map", {
+                logo: false,
+                slider: false,
+                nav: false,
+                extent: startExtent
+            });
+            dojo.connect(map, "onLoad", addGraphics);
+            // loop through layers and turn them on as required
+            for (var i = 0; i < layerType.length; i++) {
+                var thisLayerType = layerType[i].split(":");
+
+                switch (thisLayerType[0]) {
+                    case "hybridLayer":
+                        var layer = new esri.virtualearth.VETiledLayer({
+                            bingMapsKey: BingMapsKey,
+                            mapStyle: esri.virtualearth.VETiledLayer.MAP_STYLE_AERIAL_WITH_LABELS
+                        });
+                        layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Bing Hybrid Layer</div>";
+                        layer.id = layerType[i];
+                        break;
+                    case "streetsLayer":
+                        var layer = new esri.virtualearth.VETiledLayer({
+                            bingMapsKey: BingMapsKey,
+                            mapStyle: esri.virtualearth.VETiledLayer.MAP_STYLE_ROAD
+                        });
+                        layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Bing Streets Layer</div>";
+                        layer.id = layerType[i];
+                        break;
+                    case "aerialLayer":
+                        var layer = new esri.virtualearth.VETiledLayer({
+                            bingMapsKey: BingMapsKey,
+                            mapStyle: esri.virtualearth.VETiledLayer.MAP_STYLE_AERIAL
+                        });
+                        layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Bing Aerial</div>";
+                        layer.id = layerType[i];
+                        break;
+                    case "dfirmLayer":
+                        var parishLayer = { id: "0", parishName: node, layerOpacity: thisLayerType[1], layerFused: "", layerURL: "", layerType: "DFIRM" };
+
+                        //set layer variable
+                        parishLayer.layerURL = parishLayersDetails.Parishes[node - 1].DFIRM.url;
+                        parishLayer.layerFused = parishLayersDetails.Parishes[node - 1].DFIRM.layerType;
+                        if (parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != "Preliminary") {
+                            dojo.byId("layerInfo").innerHTML = "<div>" + parishLayersDetails.Parishes[node - 1].name + " DFIRM (Effective Date: " + parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate + ")</div>";
+                            var date = "(Effective Date: " + parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate + ")";
+                        }
+                        else {
+                            var date = "(Issued Date: " + parishLayersDetails.Parishes[node - 1].DFIRM.Date + ")";
+                            dojo.byId("layerInfo").innerHTML = "<div>" + parishLayersDetails.Parishes[node - 1].name + " DFIRM ( Date: " + parishLayersDetails.Parishes[node - 1].DFIRM.Date + ")</div>";
+                        }
+                        //dojo.byId("layerInfo").innerHTML = parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate;
+
+                        if (parishLayer.layerFused == "Tiled") {
+                            var layer = new esri.layers.ArcGISTiledMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity, id: "parishLayer" + parishLayer.id, visible: true });
+                        }
+                        else {
+                            var layer = new esri.layers.ArcGISDynamicMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity, id: "parishLayer" + parishLayer.id, visible: true });
+
+                        }
+                        if (parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != undefined && parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != "" && parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != "Preliminary") {
+                            //The DFIRM Effective date is adopted (Future) 6 months before it is effective, so if today's date is earlier than the effective date,
+                            // then it is only adopted.
+                            if (new Date() < new Date(parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate)) {
+                                //future DFIRM
+                                layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Future FIRM Layer</div>";
+                            } else {
+                                //effective DFIRM
+
+                                layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Effective FIRM Layer (" + parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate + ")</div>";
+                            }
+                        } else {
+                            //preliminary DFIRM
+                            layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Preliminary FIRM Layer " + parishLayersDetails.Parishes[node - 1].DFIRM.Date + "</div>";
+
+                        }
+                        //layername += "<div style='text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'>Effective DFIRM Layer" + date + "</div>";
+                        break;
+                    case "pdfirmLayer":
+                        var parishLayer2 = { id: "0", parishName: node, layerOpacity: thisLayerType[1], layerFused: "", layerURL: "", layerType: "PDFIRM" };
+                        add_P_DFIRM = true;
+                        //set layer variable
+                        parishLayer2.layerURL = parishLayersDetails.Parishes[node - 1].PDFIRM.url;
+                        parishLayer2.layerFused = parishLayersDetails.Parishes[node - 1].PDFIRM.layerType;
+                        dojo.byId("layerInfo").innerHTML += "<div>" + parishLayersDetails.Parishes[node - 1].name + " Partial Map Revision DFIRM : (" + parishLayersDetails.Parishes[node - 1].PDFIRM.EffectiveDate + ")</div>";
+
+                        if (parishLayer2.layerFused == "Tiled") {
+                            var layer = new esri.layers.ArcGISTiledMapServiceLayer(parishLayer2.layerURL, { "opacity": parishLayer2.layerOpacity, id: "parishLayer" + parishLayer2.id, visible: true });
+                        }
+                        else {
+                            var layer = new esri.layers.ArcGISDynamicMapServiceLayer(parishLayer2.layerURL, { "opacity": parishLayer2.layerOpacity, id: "parishLayer" + parishLayer2.id, visible: true });
+
+                        }
+                        layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> PDFIRM Layer</div>";
+                        break;
+
+                    case "abfeLayer":
+                        var parishLayer = { id: "1", parishName: node, layerOpacity: .6, layerFused: "", layerURL: "", layerType: "ABFE" };
+
+                        //set layer variable
+                        parishLayer.layerURL = parishLayersDetails.Parishes[node - 1].ABFE.url;
+                        parishLayer.layerFused = parishLayersDetails.Parishes[node - 1].ABFE.layerType;
+
+                        if (parishLayer.layerFused == "Tiled") {
+                            var layer = new esri.layers.ArcGISTiledMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity, id: "parishLayer" + parishLayer.id, visible: true });
+                        }
+                        else {
+                            var layer = new esri.layers.ArcGISDynamicMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity });
+                        }
+                        layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> ABFE Layer</div>";
+                        break;
+
+                    case "effFirmLayer":
+                        var parishLayer = { id: "2", parishName: node, layerOpacity: 1.0, layerFused: "", layerURL: "", layerType: "EFF_FIRM" };
+                        parishLayer.layerURL = parishLayersDetails.Parishes[node - 1].FIRM.url;
+                        parishLayer.layerFused = parishLayersDetails.Parishes[node - 1].FIRM.layerType;
+
+                        if (parishLayer.layerFused == "Tiled") {
+                            layer = new esri.layers.ArcGISTiledMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity, id: "parishLayer" + parishLayer.id, visible: true });
+                        }
+                        else {
+                            layer = new esri.layers.ArcGISDynamicMapServiceLayer(parishLayer.layerURL, { "opacity": parishLayer.layerOpacity, id: "parishLayer" + parishLayer.id, visible: true });
+                            //map.addLayer(new esri.layers.ArcGISDynamicMapServiceLayer(url, { id: layerName, "opacity": 1.0 }))
+                        }
+                        if (parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != undefined && parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != "" && parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate != "Preliminary") {
+                            //The DFIRM Effective date is adopted (Future) 6 months before it is effective, so if today's date is earlier than the effective date,
+                            // then it is only adopted.
+                            if (new Date() < new Date(parishLayersDetails.Parishes[node - 1].DFIRM.EffectiveDate)) {
+                                //effective FIRM
+                                layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> Effective FIRM Layer (Date:" + parishLayersDetails.Parishes[node - 1].FIRM.Date + ")</div>";
+                            } else {
+                                //Historical FIRM
+                                layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> Historical FIRM Layer </div>";
+
+                            }
+                        } else {
+                            //effective FIRM
+                            layername += "<div style='margin-top:2px;text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> Effective FIRM Layer (Date:" + parishLayersDetails.Parishes[node - 1].FIRM.Date + ")</div>";
+                        }
+                        //layername += "<div style='text-align:left;font-family:Tahoma;font-size:12px; padding:10px; background-color:#ccc; width: auto; float: left; margin-left: 10px;'> Historical Firm Layer (Date:" + parishLayersDetails.Parishes[node - 1].FIRM.Date + ")</div>";
+                        break;
+                }
+                //add layer, and by default it is visible
+                map.addLayer(layer);
+            }
+            //end loop
+
+            dojo.byId("printTitle").innerHTML = "Title: " + unescape(getQueryString('t'));
+
+            dojo.byId("printLayer").innerHTML = "<div style='margin-top:2px;text-align:left; margin-left:10px; padding-top:10px; padding-bottom:10px; float:left;font-size: 17px; line-height: 20px;'>Visible Layers:</div>" + layername + "</div>";
+
+            //set and load extent
+            //dojo.connect(map, "onUpdateEnd", function () {
+
+            //    esri.hide(dojo.byId("loadingImg"))
+            //});
+
+        }
+        function getLayerInfo(parishLayer) {
+            //parishLayer.parishName gives the ith parish in the Parish JSON file
+            var parish = parishLayersDetails.Parishes[i]
+            parishLayer.layerURL = "";
+            parishLayer.layerFused = "";
+
+
+        }
+        function addGraphics() {
+            //diasble mouse events on the map
+            try {
+                map.disablePan();
+                map.disableRubberBandZoom();
+                map.disableDoubleClickZoom();
+                map.disableScrollWheelZoom();
+                map.disableShiftDoubleClickZoom();
+                map.disableKeyboardNavigation();
+            }
+            catch (Error) {
+                alert(Error);
+            }
+
+            //get the graphics data from the query string to add graphics to the map
+            var x = getQueryString('graphicData');
+            var i = x.split("_");
+            var tbl = "<table id='printMap_results' cellspacing='0' border='0' rules=\"all\"><tr><td class='resultsHeader'><b>Point</b></td><td class='resultsHeader'><b>Latitude</b></td><td class='resultsHeader'><b>Longitude</b></td>";
+            //TODO: add code to determine if PMR DFIRM value exist in pDFIRM attribute. If so, then add value to results table.
+            tbl += "   <td class='resultsHeader'><b>Panel ID</b></td>";
+            tbl += "<td class='resultsHeader'><b>Flood Zone</b></td>";
+            (add_P_DFIRM == true) ? tbl += "<td class='resultsHeader'><b>PMR Flood Zone</b></td>" : tbl += "";
+            tbl += "   <td class='resultsHeader'><b>BFE*</b></td>";
+            tbl += "<td class='resultsHeader'><b>Ground Elevation<sup>1</sup></b></td>";
+            tbl += "   <td class='resultsHeader'><b>BWS<sup>2<sup></b></td>";
+            //tbl += "   <td style='width:145px;' class='resultsHeader'><b>User Notes</b></td>";
+            tbl += "</tr>";
+
+            //fill attributes and build table for display
+            for (var a = 0; a < i.length - 1; a++) {
+
+                var i1 = i[a].split(";");   //example - Long:-92.87303796875,Lat:32.530353078125,FloodZone:Unknown,Elevation:370.743 FEET
+                var index = i1[0].split(":"); //example - Index:1 (not used)
+                var p1 = i1[1].split(":");    //example - Long:-92.87303796875
+                var p2 = i1[2].split(":");    //example - Lat:32.530353078125
+                var bfe = i1[3].split(",");
+                var fldZone = i1[3].split(":");   //example - FloodZone:X
+                var pfldZone = i1[4].split(":"); //example - pFloodZone:X
+                var elevation = i1[5].split(":"); //example - Elevation:370.743 ft
+                var windSpeed = i1[6].split(":"); //example - BWS:107 mph
+                var windSpeed13 = i1[7].split(":"); //example - BWS:100-109 mph
+                var panelId = i1[8].split(":"); //example -PanelId: 00301
+                var date=i1[9].split(":");
+                tbl += "<tr><td>" + (a + 1) + "</td><td>"; //point number
+                tbl += Math.round(p2[1] * 100000) / 100000 + "</td><td>";//lat
+                tbl += Math.round(p1[1] * 100000) / 100000 + "</td><td>";//long
+                tbl += unescape(panelId[1]) +"</br>"+unescape(date[1])+ "</td><td>";//panel id
+                tbl += unescape(fldZone[1]) + "</td><td>";//flood zone
+                (add_P_DFIRM == true) ? tbl += unescape(pfldZone[1]) + "</td><td>" : tbl += "";//pmr if exists
+                if (bfe[1] != undefined) {
+                    var bfeval = bfe[1].split("%20");
+                    if (bfeval[2] != undefined) {
+                        tbl += "EL " + unescape(bfeval[2]) + "</td><td>";
+                    }
+                    else if (bfeval != undefined) {
+                        tbl += unescape(bfeval) + "</td><td>";
+                    }
+                }
+                else tbl += "N/A </td><td>";
+                tbl += unescape(elevation[1]) + "</td><td>"; //elevation
+                //tbl += unescape(windSpeed[1]) + "</td><td>";//bws 12
+                tbl += unescape(windSpeed13[1]) + "</td></tr>"; //bws 13
+                var symbol = new esri.symbol.PictureMarkerSymbol('images/pin8.png', 30, 30);
+                symbol.setOffset(0, 12);
+
+                if (symbol) {
+                    symbol = eval(symbol);
+                }
+
+                var ptX = parseFloat(p1[1]);
+                var ptY = parseFloat(p2[1]);
+                var point = new esri.geometry.Point({ "x": ptY, "y": ptX, "spatialReference": { " wkid": 4269 } });
+
+                point.setX(ptX);
+                point.setY(ptY);
+                point = esri.geometry.geographicToWebMercator(point);
+
+                var graphic = new esri.Graphic(point, symbol);
+                try {
+                    map.graphics.add(graphic);
+                }
+                catch (Error) {
+                    window.alert(Error);
+                }
+
+
+                var font = new esri.symbol.Font("8pt", esri.symbol.Font.STYLE_NORMAL, esri.symbol.Font.VARIANT_NORMAL, esri.symbol.Font.WEIGHT_BOLD);
+
+                var textSymbol = new esri.symbol.TextSymbol(index[1], font);
+                textSymbol.setOffset(0, 12);
+
+                //textSymbol.setColor(new dojo.Color([236, 240, 241]));
+
+                textSymbol.setColor(new dojo.Color([236,240,241]));
+
+                //textSymbol.setTextShadow(white,5px,5px,5px);
+                //textSymbol.setbackgroundColor(new dojo.Color([0, 0, 255]));
+                map.graphics.add(new esri.Graphic(point, textSymbol));
+
+            }//end for
+
+            if (x.replace(/\s/g, "") == "") {
+                tbl += "<tr ><td colspan='8'>No Points entered on Map</td></tr>";
+                //    dojo.byId("resultDiv").innerHTML = "";
+            }
+
+            tbl += "</table>";
+            tbl += "*<b> BFE</b> = Base Flood Elevation (<b>**</b> Some BFEs cannot be read from the data. <a href='http://www.lsuagcenter.com/NR/rdonlyres/377A0F8E-F3D7-47C1-82EB-A303D83C0FDE/94063/BFEScenarios_crawlspace1.pdf' target='_blank'> Find out how to determine BFE</a>)</p>";
+            
+            tbl += "<br/>";
+            dojo.byId("resultDiv").innerHTML = tbl;
+
+            //}
+
+        }
+
+        function getQueryString(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+
+            if (results == null) {
+                return "";
+            }
+
+            else {
+                return results[1];
+            }
+        }
+
+
+        dojo.addOnLoad(Init);
+        //window.location.reload(true);  
+    </script>
+
+
+</head>
+<body style="margin-right: auto; margin-left: auto; width: 800px;">
+
+
+
+    <div id="printMap_header">
+        <span style="width: 110px; float: left;">
+            <img src="http://www.lsuagcenter.com/mcms/images/departments/4hcamp/agcenter-logo.gif" align="left" />
+        </span>
+        <span style="width: 530px; float: left;">
+            <h1>Louisiana Flood Map</h1>
+            <span id="layerInfo" style="display: none">
+                <!--Ascension DFIRM (Effective Date: 08/16/2007)-->
+            </span>
+            <span id="printTitle"></span>
+
+        </span>
+        <span style="width: 150px; float: right;">
+            <input style="float: right; margin-left: 20px;" class="st_email" type="button" value="Email" onclick="Sendit();" />
+            <input id="btnPrint" type="button" value="Print" onclick="window.print();" />
+
+
+            <!-- AddThis Button BEGIN -->
+<!--            <div class="addthis_toolbox addthis_default_style addthis_32x32_style" style="float: right;">
+            <a class="addthis_button_print addthis_button_preferred_1"></a>
+            <a class="addthis_button_email addthis_button_preferred_2"></a>-->
+            <!--<a class="addthis_button_preferred_3"></a>-->
+            <!--<a class="addthis_button_preferred_4"></a>-->
+            <!--<a class="addthis_button_compact"></a>-->
+            <!--<a class="addthis_counter addthis_bubble_style"></a>-->
+<!--            </div>
+            <script type="text/javascript">var addthis_config = { "data_track_addressbar": true };</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52fd79e9436ed0b6"></script>-->
+            <!-- AddThis Button END -->
+
+
+        </span>
+    </div>
+
+
+
+
+    <div id="map">
+        <!--<img src="images/mapimage.png" style="border: solid 1px #000;" />-->
+    </div>
+
+    <div style="border-left: solid 1px #000; border-right: solid 1px #000; width: 802px;">
+        <span id="printLayer"></span>
+        <p style="font-style: italic; font-size: 10px; margin-left: 10px;">
+            <br />
+            Flood information is read from digital map</p>
+    </div>
+
+    <div id="resultDiv">
+
+        <table id="printMap_results" cellspacing="0" border="0">
+            <tbody>
+
+                <tr>
+                    <td class="resultsHeader"><b>Point</b></td>
+                    <td class="resultsHeader"><b>Latitude</b></td>
+                    <td class="resultsHeader"><b>Longitude</b></td>
+                    <td class="resultsHeader"><b>Flood Zone</b></td>
+                    <td class="resultsHeader"><b>Ground Elevation</b></td>
+                    <td class="resultsHeader"><b>BWS('06-'12)*</b></td>
+                    <td class="resultsHeader"><b>BWS('13)*</b></td>
+                    <td class="resultsHeader"><b>Panel ID</b></td>
+                    <!-- <td class="resultsHeader"><b>User Notes</b></td>-->
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <!--1-->
+                    </td>
+                    <td>
+                        <!--30.32778-->
+                    </td>
+                    <td>
+                        <!--90.92147-->
+                    </td>
+                    <td>
+                        <!--X PROTECTED BY LEVEE-->
+                    </td>
+                    <td>
+                        <!--20.105 ft-->
+                    </td>
+                    <td>
+                        <!--100-109 mph-->
+                    </td>
+                    <td>
+                        <!--108 mph-->
+                    </td>
+                    <td>
+                        <!--22005C0035E-->
+                    </td>
+                    <!--<td></td>-->
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="printMap_disclaimer">
+        <h2>DISCLAIMER:</h2>
+        <p>Floodplain data that is shown on this map is the same data that your flood 
+    plain administrator uses. This web product is not considered an official FEMA 
+    Digital Flood Insurance Rate Map (DFIRM). It is provided for information purposes 
+    only, and it is not intended for insurance rating purposes. Please contact your 
+    local floodplain administrator for more information or to view an official copy of the 
+    FIRM or DFIRM.
+        </p>
+
+        <p>
+            <i>
+                1. <b>Ground Elevation</b> is provided by USGS&#39;s elevation web service which provides the best available data for the specified point. If unable to find elevation at the specified point, the service returns an extremely large, negative value (-1.79769313486231E+308).<br />
+                2. <b>BWS</b> is provided by the LSU AgCenter&#39;s basic wind speed web service developed for the 2012 IRC building codes.<br />
+            </i>
+
+        </p>
+    </div>
+
+
+
+
+
+    
+    <script type="text/javascript">
+        //$(function () {
+        //    module('Core');
+
+        //    test('basic requirements', function () {
+        //        expect(3);
+
+        //        ok($.fn.shareEmail, 'shareEmail');
+
+        //        ok($.fn.shareEmail.defaults, 'shareEmail defaults');
+
+        //        $('.st_email').shareEmail();
+
+        //        // @todo not sure why this is failing but the plugin does what we want so just need to fix test
+        //        var expectedElement = $.tmpl($.fn.shareEmail.defaults.template, $.fn.shareEmail.defaults).appendTo($('<span></span>')).html();
+
+        //        equals($('.st_email').html(), expectedElement);
+        //    });
+
+        //});
+
+
+        function Sendit() {
+            var url = document.URL;
+            var subject = "LA Flood Map - has been shared with you";
+            //var address = escape("");
+            var bodytext = "LA Flood Map Source: ";
+            //alert(url);
+            //bodytext += url;
+            location.href = "mailto:" + "&subject=" + subject + "&body=" + bodytext + encodeURIComponent(url);
+        }
+
+
+
+
+    </script>
+
+
+
+    <!--<center><form Method="GET" ACTION=POST><input Type=button Value="Send this page URL by e-mail" OnClick=Sendit()></form></center>-->
+
+
+</body>
+</html>

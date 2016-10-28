@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.dotd.la.gov/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.dotd.la.gov/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.dotd.la.gov/">
+      <s:element name="GetCommunityInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommunityInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommunityInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommunityInfoByParish">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fipscode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommunityInfoByParishResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommunityInfoByParishResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCities">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCitiesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCommunityInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommunityInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommunityInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommunityInfoByParish" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommunityInfoByParishResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCities" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoHttpGetIn">
+    <wsdl:part name="cid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishHttpGetIn">
+    <wsdl:part name="fipscode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpGetIn" />
+  <wsdl:message name="GetCitiesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoHttpPostIn">
+    <wsdl:part name="cid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishHttpPostIn">
+    <wsdl:part name="fipscode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunityInfoByParishHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpPostIn" />
+  <wsdl:message name="GetCitiesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:portType name="CommunityContactsSoap">
+    <wsdl:operation name="GetCommunityInfo">
+      <wsdl:input message="tns:GetCommunityInfoSoapIn" />
+      <wsdl:output message="tns:GetCommunityInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <wsdl:input message="tns:GetCommunityInfoByParishSoapIn" />
+      <wsdl:output message="tns:GetCommunityInfoByParishSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:input message="tns:GetCitiesSoapIn" />
+      <wsdl:output message="tns:GetCitiesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CommunityContactsHttpGet">
+    <wsdl:operation name="GetCommunityInfo">
+      <wsdl:input message="tns:GetCommunityInfoHttpGetIn" />
+      <wsdl:output message="tns:GetCommunityInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <wsdl:input message="tns:GetCommunityInfoByParishHttpGetIn" />
+      <wsdl:output message="tns:GetCommunityInfoByParishHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:input message="tns:GetCitiesHttpGetIn" />
+      <wsdl:output message="tns:GetCitiesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CommunityContactsHttpPost">
+    <wsdl:operation name="GetCommunityInfo">
+      <wsdl:input message="tns:GetCommunityInfoHttpPostIn" />
+      <wsdl:output message="tns:GetCommunityInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <wsdl:input message="tns:GetCommunityInfoByParishHttpPostIn" />
+      <wsdl:output message="tns:GetCommunityInfoByParishHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:input message="tns:GetCitiesHttpPostIn" />
+      <wsdl:output message="tns:GetCitiesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommunityContactsSoap" type="tns:CommunityContactsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCommunityInfo">
+      <soap:operation soapAction="http://www.dotd.la.gov/GetCommunityInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <soap:operation soapAction="http://www.dotd.la.gov/GetCommunityInfoByParish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <soap:operation soapAction="http://www.dotd.la.gov/GetCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommunityContactsSoap12" type="tns:CommunityContactsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCommunityInfo">
+      <soap12:operation soapAction="http://www.dotd.la.gov/GetCommunityInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <soap12:operation soapAction="http://www.dotd.la.gov/GetCommunityInfoByParish" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <soap12:operation soapAction="http://www.dotd.la.gov/GetCities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommunityContactsHttpGet" type="tns:CommunityContactsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetCommunityInfo">
+      <http:operation location="/GetCommunityInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <http:operation location="/GetCommunityInfoByParish" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <http:operation location="/GetCities" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CommunityContactsHttpPost" type="tns:CommunityContactsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetCommunityInfo">
+      <http:operation location="/GetCommunityInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunityInfoByParish">
+      <http:operation location="/GetCommunityInfoByParish" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <http:operation location="/GetCities" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommunityContacts">
+    <wsdl:port name="CommunityContactsSoap" binding="tns:CommunityContactsSoap">
+      <soap:address location="http://floods.dotd.la.gov/lafloods/communitycontacts.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommunityContactsSoap12" binding="tns:CommunityContactsSoap12">
+      <soap12:address location="http://floods.dotd.la.gov/lafloods/communitycontacts.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommunityContactsHttpGet" binding="tns:CommunityContactsHttpGet">
+      <http:address location="http://floods.dotd.la.gov/lafloods/communitycontacts.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CommunityContactsHttpPost" binding="tns:CommunityContactsHttpPost">
+      <http:address location="http://floods.dotd.la.gov/lafloods/communitycontacts.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

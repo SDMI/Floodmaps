@@ -1,0 +1,72 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        LA FloodMaps - Base Flood Elevation
+        s - Help
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css" />
+    <link rel="stylesheet" href="floodmap_style/scenarios.css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <header class="header2">
+        <div class="floodmap_title_bar">
+            LA FloodMaps <div class="floodmap_title_bar_sub">
+                <span class="fancylabel">Base Flood Elevation Scenarios</span>
+                <span class="betalabel">Beta</span>
+            </div>
+        </div>
+    </header>
+    <div class="super">
+        <div class="help pure-g-r">
+            <div class="intro pure-u-1">
+                <a href="scenarios.html">Back to the tool</a>
+                <a class="btn-flyer" href="http://www.lsuagcenter.com/NR/rdonlyres/377A0F8E-F3D7-47C1-82EB-A303D83C0FDE/94063/BFEScenarios_crawlspace1.pdf">Printable Flyer (.pdf)</a>
+                <h1>LA FloodMaps - Base Flood Elevation Scenarios - Help</h1>
+                <p>Some information you need to fill in the boxes on the <strong>Base Flood Elevation Scenarios</strong> tool is included in the point data associated with your pins. You can find it in the <strong>Points</strong> tool and in the data table on the <strong>Print-Preview</strong> page.</p>
+            </div>
+            <div class="bfedefs pure-u-1 pure-g-r">
+                <div class="pure-u-1">
+                    <img src="images/BFES-point-table.png" />
+                </div>
+                <div class="pure-u-1">
+                    <ul>
+                        <li class="zonebfe">For Flood Zones <strong>"X"</strong>, <strong>"X-PROTECTED BY LEVEE"</strong>, or <strong>"0.2% Annual Chance"</strong>, there is <strong>no BFE</strong>.</li>
+                        <li class="zonebfe">For Flood Zones <strong>"AE, EL #"</strong> and <strong>"VE, EL #"</strong> the <strong>BFE is the # shown in the zone designation.</strong></li>
+                        <li class="zonebfe">For Flood Zones <strong>"AO (Depth = #)"</strong>, the <strong>practical equivalent of BFE</strong> is the ground elevation plus the <strong>"#"</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pure-u-1-2 further ">
+                <img src="images/BFES-map-example.jpg" />
+            </div>
+            <div class="pure-u-1-2 further-text">
+                <p>
+                    For Flood Zones <strong>"AE"</strong> and <strong>"VE"</strong>, BFE’s are often shown at discrete points within the zones, denoted in whole numbers by wavy lines running across the floodplain.
+                </p>
+                <p>
+                    The BFE can be estimated as the higher or lower number on wavy lines near your point, or calculated in tens of a foot by interpolation.  For example (shown left): If a point is  slightly nearer the BFE line labeled 27 than to the one labeled  26, the BFE at that point would be about 26.6)
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-43366216-1', 'lsuagcenter.com');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

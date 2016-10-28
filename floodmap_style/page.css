@@ -1,0 +1,4155 @@
+/* portrait */
+/*@media screen and (orientation:portrait) {
+
+}*/
+/* landscape */
+/*@media screen and (orientation:landscape) {
+    #container
+    {
+        transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        left:0px;
+    }
+}*/
+
+
+
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s,
+samp, small, strike, strong, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+    input[type="radio"] + label {
+        /*color: #292321;*/
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+        input[type="radio"] + label span {
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+            margin: -1px 4px 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
+        input[type="radio"] + label span {
+            background-color: #292321;
+        }
+
+    input[type="radio"]:checked + label span {
+        background-color: #00B6FF;
+    }
+
+
+
+
+
+/*input[type="radio"] + label span,
+input[type="radio"]:checked + label span {
+  -webkit-transition:background-color 0.4s linear;
+  -o-transition:background-color 0.4s linear;
+  -moz-transition:background-color 0.4s linear;
+  transition:background-color 0.4s linear;
+}*/
+
+
+
+
+#loadingImg {
+    background-image: url('../images/fancybox_sprite.png');
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -22px;
+    margin-left: -22px;
+    background-position: 0 -108px;
+    opacity: 0.8;
+    cursor: pointer;
+    z-index: 8060;
+    width: 44px;
+}
+
+#spinner {
+    width: 44px;
+    height: 44px;
+    background: url('../images/fancybox_loading.gif') center center no-repeat;
+}
+
+#acquiring {
+    position: absolute;
+    width: 90px;
+    left: -29px;
+    color: #fff;
+    font-weight: 600;
+    background-color: #000;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+
+strong {
+    font-weight: 600;
+}
+
+.backgroundRemoval {
+    background: none !important;
+}
+
+.panelheader-wrap {
+    width: 310px;
+    float: right;
+    position: absolute;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    right: 20px;
+    top: 101px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 999;
+    border: solid 2px rgb(0, 0, 0);
+    display: none;
+    border-bottom: none;
+    color: #fff;
+}
+
+    .panelheader-wrap h2 {
+        font-size: 27px;
+        float: left;
+    }
+
+.middlepanel-header {
+    float: left;
+    position: absolute;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 110px;
+    padding: 0 2px 0 15px;
+    left: 30%;
+    right: 30%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left: solid 2px #000;
+    border-right: solid 2px #000;
+    border-top: solid 2px #000;
+    z-index: 1000;
+    font-size: 27px;
+    color: #fff;
+}
+
+.hide {
+    display: none;
+}
+
+#iconKey li span {
+    font-size: 14px !Important;
+    float: left;
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    width: 100%;
+    line-height: 20px;
+    margin-top: 13px;
+    -webkit-text-shadow: none;
+    -moz-text-shadow: none;
+    text-shadow: none;
+    color: #000;
+}
+
+#iconKey li {
+    margin-bottom: 33px;
+    display: inline-block;
+    width: 85%;
+    float: left;
+    position: relative;
+}
+
+#iconKey td {
+    font-size: 14px !Important;
+    float: left;
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    width: 100%;
+    line-height: 20px;
+    margin-top: 13px;
+    -webkit-text-shadow: none;
+    -moz-text-shadow: none;
+    text-shadow: none;
+    color: #000;
+}
+
+#iconKey .icon-search,
+#iconKey .icon-print,
+#iconKey .icon-key,
+#iconKey .icon-calendar,
+#iconKey .icon-globe,
+#iconKey .icon-map-marker,
+#iconKey .zocial-buffer {
+    font-size: 40px;
+    width: 14%;
+    text-align: center;
+    -webkit-text-shadow: 2px 2px rgb(223, 223, 223);
+    -moz-text-shadow: 2px 2px rgb(223, 223, 223);
+    text-shadow: 2px 2px rgb(223, 223, 223);
+    color: #000;
+    cursor: pointer;
+}
+
+
+
+#iconKey .zocial-buffer {
+    line-height: 37px;
+}
+
+
+
+#iconKey {
+    padding-top: 20px;
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+
+
+.title {
+    font-size: 16px;
+    padding: 5px;
+    -o-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    cursor: text !Important;
+}
+
+
+.esriPopup .titlePane {
+    background-color: #000 !Important;
+}
+
+.esriPopupMaximized {
+    top: 75px !Important;
+}
+
+.esriPopup .titleButton.maximize {
+    right: 52px !Important;
+    top: 9px !Important;
+}
+
+.esriPopup .titleButton.restore {
+    right: 52px !Important;
+    top: 9px !Important;
+}
+
+.esriPopup .actionsPane .zoomTo {
+    display: none;
+}
+
+
+
+span.firmette {
+    display: none;
+    color: #555;
+    cursor: pointer;
+    margin-left: 2.5rem;
+}
+
+    span.firmette:hover {
+        color: #fff;
+    }
+
+    span.firmette i {
+        font-size: 1rem;
+    }
+
+@media (min-width: 768px) {
+    span.firmette {
+        display: inline-block;
+    }
+}
+
+
+
+.maximize {
+    display: none;
+}
+
+.esriPopup .actionsPane {
+    border: none !important;
+}
+
+
+.esriPopup .contentPane {
+    border: none !important;
+}
+
+
+.title b {
+    font-weight: 600;
+}
+
+.bottomSpacer {
+    bottom: 2.6em;
+}
+
+.contentPane b {
+    font-weight: 700;
+    padding-right: 5px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.contentPane table {
+    width: 100%;
+}
+
+.floodmap_meetings {
+    width: 100%;
+}
+
+.floodmap_print {
+    width: 270px;
+}
+
+.floodmap_points {
+    width: 270px;
+}
+
+#floodmap_legendDiv {
+    width: 570px;
+}
+
+    #floodmap_legendDiv h3 {
+        font-size: 24px;
+    }
+
+#floodmapSelectDiv h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#floodmap_legendDiv li {
+    padding: 10px 10px 10px 85px;
+    margin-bottom: 10px;
+}
+
+#events li {
+    margin-bottom: 10px;
+}
+
+.dfirmlegendicon1 {
+    background-image: url(../images/DFIRMlegendIcon1.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon2 {
+    background-image: url(../images/DFIRMlegendIcon2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon3 {
+    background-image: url(../images/DFIRMlegendIcon3.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon4 {
+    background-image: url(../images/DFIRMlegendIcon4.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon5 {
+    background-image: url(../images/DFIRMlegendIcon5.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon6 {
+    background-image: url(../images/DFIRMlegendIcon6.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+
+
+
+
+
+.dfirmlegendicon7 {
+    background-image: url(../images/DFIRMlegendIcon7.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.notshaded {
+    background-image: url(../images/notshaded.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon8 {
+    background-image: url(../images/DFIRMlegendIcon8.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon9 {
+    background-image: url(../images/DFIRMlegendIcon9.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon10 {
+    background-image: url(../images/DFIRMlegendIcon10.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon11 {
+    background-image: url(../images/DFIRMlegendIcon11.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon12 {
+    background-image: url(../images/DFIRMlegendIcon12.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon13 {
+    background-image: url(../images/DFIRMlegendIcon13.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon14 {
+    background-image: url(../images/DFIRMlegendIcon14.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.dfirmlegendicon15 {
+    background-image: url(../images/DFIRMlegendIcon15.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pdfirmlegendicon1 {
+    background-image: url(../images/pDFIRMlegendIcon1.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon2 {
+    background-image: url(../images/pDFIRMlegendIcon2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon3 {
+    background-image: url(../images/pDFIRMlegendIcon3.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon4 {
+    background-image: url(../images/pDFIRMlegendIcon4.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon5 {
+    background-image: url(../images/pDFIRMlegendIcon5.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon6 {
+    background-image: url(../images/pDFIRMlegendIcon6.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+
+
+
+
+
+.pdfirmlegendicon7 {
+    background-image: url(../images/pDFIRMlegendIcon7.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon8 {
+    background-image: url(../images/pDFIRMlegendIcon8.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon9 {
+    background-image: url(../images/pDFIRMlegendIcon9.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon10 {
+    background-image: url(../images/pDFIRMlegendIcon10.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon11 {
+    background-image: url(../images/pDFIRMlegendIcon11.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon12 {
+    background-image: url(../images/pDFIRMlegendIcon12.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon13 {
+    background-image: url(../images/pDFIRMlegendIcon13.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon14 {
+    background-image: url(../images/pDFIRMlegendIcon14.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.pdfirmlegendicon15 {
+    background-image: url(../images/pDFIRMlegendIcon15.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+
+.pdfirmlegendseclusion {
+    background-image: url(../images/pdfirmlegendseclusion.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    color: red;
+}
+
+.pdfirmseclusionNote {
+    color: #222;   
+    font-size:0.9em; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.firmlegendicon1 {
+    background-image: url(../images/FIRMlegendIcon1.png);
+    background-repeat: no-repeat;
+    background-position: 0 13px;
+}
+
+.firmlegendicon2 {
+    background-image: url(../images/FIRMlegendIcon2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon3 {
+    background-image: url(../images/FIRMlegendIcon3.png);
+    background-repeat: no-repeat;
+    background-position: 0 13px;
+}
+
+.firmlegendicon4 {
+    background-image: url(../images/FIRMlegendIcon4.png);
+    background-repeat: no-repeat;
+    background-position: 0 13px;
+}
+
+.firmlegendicon5 {
+    background-image: url(../images/FIRMlegendIcon5.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon6 {
+    background-image: url(../images/FIRMlegendIcon6.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon7 {
+    background-image: url(../images/FIRMlegendIcon7.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon8 {
+    background-image: url(../images/FIRMlegendIcon8.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon9 {
+    background-image: url(../images/FIRMlegendIcon9.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon10 {
+    background-image: url(../images/FIRMlegendIcon10.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon11 {
+    background-image: url(../images/FIRMlegendIcon11.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon12 {
+    background-image: url(../images/FIRMlegendIcon12.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.firmlegendicon13 {
+    background-image: url(../images/FIRMlegendIcon13.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+#agcenter-logo {
+    background: url(../images/agcenter-logo.gif) no-repeat;
+    width: 100px;
+    height: 57px;
+    position: absolute;
+    right: 20px;
+    z-index: 150;
+    bottom: 55px;
+    background-color: #333;
+    background-size: 100px 57px;
+}
+
+#dotd-logo {
+    background: url(../images/dotdlogo100.png) no-repeat;
+    width: 100px;
+    height: 57px;
+    position: absolute;
+    right: 135px;
+    z-index: 150;
+    bottom: 55px !Important;
+    background-color: #333;
+}
+
+
+#dotd-logo2 {
+    background: url(../images/dotdlogo100.png) no-repeat;
+    width: 100px;
+    height: 57px;
+    position: relative;
+    float: left;
+}
+
+#agcenter-logo2 {
+    background: url(../images/agcenter-logo.gif) no-repeat;
+    width: 100px;
+    height: 57px;
+    position: relative;
+    float: right;
+    background-size: 100px 57px;
+}
+
+#logos-wrap {
+    float: right;
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.floodmap_meetings h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#meetings ul {
+    margin-bottom: 10px;
+}
+
+
+
+.floodmap_info {
+    font-size: 12px;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    /*-webkit-box-shadow: 0 0 0 10px rgba(34, 34, 34, .6);
+    -moz-box-shadow: 0 0 0 10px rgba(34,34,34,.6);
+    box-shadow: 0 0 0 10px rgba(34, 34, 34, .6);*/
+    left: 30%;
+    right: 30%;
+    top: 13.1em;
+    padding: 0 15px 15px 15px;
+    /*bottom: 3.4em;
+    overflow: scroll;
+    overflow-x: hidden;*/
+    bottom: 3em;
+    overflow-y: auto;
+}
+
+    .floodmap_info h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        margin-top: 20px;
+        width: 100%;
+        border-bottom: solid 1px #000;
+        padding-bottom: 10px;
+    }
+
+    .floodmap_info h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+
+    .floodmap_info h3 {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .floodmap_info p {
+        margin-bottom: 10px;
+    }
+
+    .floodmap_info em {
+        font-style: italic;
+        font-size: 14px;
+    }
+
+
+
+.floodmap_disclaimer {
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    left: 30%;
+    right: 30%;
+    padding: 0 15px 15px 15px;
+    /*bottom: 3.4em;
+    overflow: scroll;
+    overflow-x: hidden;*/
+    top: 9.8em;
+    bottom: 3em;
+    overflow-y: auto;
+}
+
+    .floodmap_disclaimer h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .floodmap_disclaimer h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+
+    .floodmap_disclaimer em {
+        font-style: italic;
+        font-size: 14px;
+    }
+
+
+
+
+
+
+
+
+
+.floodmap_layerInfo {
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    left: 30%;
+    right: 30%;
+    padding: 0 15px 15px 15px;
+    /*bottom: 3.4em;
+    overflow: scroll;
+    overflow-x: hidden;*/
+    top: 9.8em;
+    bottom: 3em;
+    overflow-y: auto;
+}
+
+    .floodmap_layerInfo h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .floodmap_layerInfo h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        margin-top: 30px;
+        font-weight: bold;
+    }
+
+    .floodmap_layerInfo em {
+        font-style: italic;
+        font-size: 14px;
+    }
+
+
+
+
+
+
+
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+button {
+    display: inline-block;
+    position: relative;
+    padding: 7px 11px 7px 11px;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    font-weight: normal;
+    color: #fff;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #00ccff;
+    -webkit-text-shadow: 1px 1px 0 #00B6FF;
+    -moz-text-shadow: 1px 1px 0 #00B6FF;
+    text-shadow: 1px 1px 0 #00B6FF;
+    width: 30%;
+    background: #87e7ff;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    margin-top: 27px;
+}
+
+
+
+.whatDoesThisMean {
+    color: #fff !Important;
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-decoration: none !Important;
+    padding: 9px 0px 9px 0px;
+    border: solid 1px #0CF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+    -webkit-text-shadow: 1px 1px #00B6FF;
+    -moz-text-shadow: 1px 1px #00B6FF;
+    text-shadow: 1px 1px #00B6FF;
+    font-weight: bold;
+    font-size: 12px;
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    cursor: pointer;
+    width: 48%;
+    margin: 0;
+    font-size: 10px;
+    line-height: 17px;
+}
+
+.floodmap_disclaimerpopupclose {
+    color: #fff !Important;
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-decoration: none !Important;
+    padding: 9px 2% 9px 2%;
+    border: solid 1px #0CF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+    -webkit-text-shadow: 1px 1px #00B6FF;
+    -moz-text-shadow: 1px 1px #00B6FF;
+    text-shadow: 1px 1px #00B6FF;
+    font-weight: bold;
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    cursor: pointer;
+    width: 223px;
+    margin: 10px 0 0 0;
+    font-size: 12px;
+    line-height: 17px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.legendPrint {
+    display: inline-block;
+    position: relative;
+    padding: 7px 11px 7px 11px;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    font-weight: normal;
+    color: #fff;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #00ccff;
+    -webkit-text-shadow: 1px 1px 0 #00B6FF;
+    -moz-text-shadow: 1px 1px 0 #00B6FF;
+    text-shadow: 1px 1px 0 #00B6FF;
+    width: auto;
+    background: #87e7ff;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    margin-top: 2px !Important;
+    text-decoration: none;
+}
+
+
+
+
+
+
+.floodmap_panel_print button {
+    display: inline-block;
+    position: relative;
+    padding: 7px 11px 7px 11px;
+    cursor: pointer;
+    text-align: center;
+    zoom: 1;
+    overflow: visible;
+    font-weight: normal;
+    color: #fff;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #00ccff;
+    -webkit-text-shadow: 1px 1px 0 #00B6FF;
+    -moz-text-shadow: 1px 1px 0 #00B6FF;
+    text-shadow: 1px 1px 0 #00B6FF;
+    width: 30%;
+    background: #87e7ff;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    margin-top: 2px !Important;
+    line-height: 15px;
+}
+
+
+select {
+    display: inline-block;
+    position: relative;
+    padding: 6px 11px 6px 11px;
+    cursor: pointer;
+    text-align: left;
+    zoom: 1;
+    overflow: visible;
+    background-color: #000;
+    font-weight: normal;
+    color: #eeeeee;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #000;
+    height: 32px;
+    font-size: 12px;
+    width: 100%;
+}
+
+#selectwrrap {
+    background-color: #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 100%;
+    float: left;
+    margin-top: 27px;
+}
+
+option {
+    padding: 6px 11px 6px 11px;
+}
+
+#pdfirmDIV,
+#dfirmDIV,
+#abfeDIV,
+#firmDIV, .layerFIRM {
+    display: inline-block;
+    padding: 6px 11px 6px 11px !Important;
+    margin-right: .1em;
+    cursor: pointer;
+    zoom: 1;
+    width:95%;
+    overflow: visible;
+    background-color: #000;
+    font-weight: normal;
+    color: #eeeeee;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: solid 1px #000;
+}
+
+
+
+/*.helper-hidden {
+opacity: 0;
+z-index: -1;
+position: relative;
+}
+
+
+#pdfirmDIV [type=checkbox]:checked,
+#dfirmDIV [type=checkbox]:checked ,
+#abfeDIV [type=checkbox]:checked ,
+#firmDIV [type=checkbox]:checked  
+ {
+background-color:#333;
+}*/
+
+
+
+
+
+
+
+input[type=checkbox].css-checkbox {
+    display: none;
+}
+
+    input[type=checkbox].css-checkbox + label.css-label {
+        padding-left: 20px;
+        height: 15px;
+        display: inline-block;
+        line-height: 15px;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        font-size: 15px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    input[type=checkbox].css-checkbox:checked + label.css-label {
+        background-position: 0 -15px;
+    }
+
+.web-two-style {
+    background-image: url(../images/checkbox.png);
+}
+
+input[type=checkbox].css-checkbox.med + label.css-label.med {
+    padding-left: 22px;
+    height: 17px;
+    display: inline-block;
+    line-height: 17px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type=checkbox].css-checkbox.med:checked + label.css-label.med {
+    background-position: 0 -17px;
+}
+
+input[type=checkbox].css-checkbox.sme + label.css-label.sme {
+    padding-left: 22px;
+    height: 16px;
+    display: inline-block;
+    line-height: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type=checkbox].css-checkbox.sme:checked + label.css-label.sme {
+    background-position: 0 -16px;
+}
+
+input[type=checkbox].css-checkbox.lrg + label.css-label.lrg {
+    padding-left: 42px;
+    height: 20px;
+    display: inline-block;
+    line-height: 18px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg {
+    background-position: 0 -20px;
+}
+
+#rdbStreet,
+#rdbAerial,
+#rdbHybrid {
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+.aerial {
+    border-left: solid 1px #fff;
+    border-right: solid 1px #fff;
+}
+
+.basemap-active {
+    background-color: #000 !Important;
+    -webkit-text-shadow: none !Important;
+    -moz-text-shadow: none !Important;
+    text-shadow: none !Important;
+}
+
+#radioset {
+    border: solid 1px #00ccff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #87e7ff;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+}
+
+.radiostyle {
+    padding: 6px 0 6px 0 !Important;
+    font-weight: normal;
+    color: #fff;
+    font-size: 14px;
+    float: left;
+    text-align: center;
+    -webkit-text-shadow: 1px 1px #00B6FF;
+    -moz-text-shadow: 1px 1px #00B6FF;
+    text-shadow: 1px 1px #00B6FF;
+    cursor: pointer;
+}
+
+.radiostyle-active {
+    background-color: #000;
+}
+
+label {
+    width: 33%;
+}
+
+#documents {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: solid 1px #ccc;
+}
+
+    #documents p {
+        margin-bottom: 10px;
+    }
+
+    #documents a {
+        color: rgb(0, 0, 0);
+        padding: 7px 11px 7px 11px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: solid 1px #BBB;
+        background: #aaa;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #ddd 0%, #aaa 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#aaa));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #ddd 0%,#aaa 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #ddd 0%,#aaa 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #ddd 0%,#aaa 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #ddd 0%,#aaa 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddd', endColorstr='#aaa',GradientType=0 );
+        /* IE6-9 */
+        -webkit-text-shadow: 2px 2px #bbb;
+        -moz-text-shadow: 2px 2px #bbb;
+        text-shadow: 2px 2px #bbb;
+        text-decoration: none;
+        display: block;
+    }
+
+
+
+.greyBoxBtn {
+    color: rgb(0, 0, 0);
+    padding: 7px 11px 7px 11px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #BBB;
+    background: #aaa;
+    background: -moz-linear-gradient(top, #ddd 0%, #aaa 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#aaa));
+    background: -webkit-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: -o-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: -ms-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: linear-gradient(to bottom, #ddd 0%,#aaa 100%);
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddd', endColorstr='#aaa',GradientType=0 );*/
+    -webkit-text-shadow: 2px 2px #bbb;
+    -moz-text-shadow: 2px 2px #bbb;
+    text-shadow: 2px 2px #bbb;
+    text-decoration: none;
+    display: block;
+    float: left;
+    width: calc(100% - 24px);
+    margin-bottom: 10px;
+}
+
+
+.pointstable-wrap input {
+    padding: 4px 0px !Important;
+}
+
+#floodInsStudyText, #floodInsStudyText_ob-Link {
+    color: rgb(0, 0, 0);
+    padding: 7px 11px 7px 11px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 1px #BBB;
+    background: #aaa;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #ddd 0%, #aaa 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#aaa));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ddd 0%,#aaa 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ddd 0%,#aaa 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ddd 0%,#aaa 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #ddd 0%,#aaa 100%);
+    /* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddd', endColorstr='#aaa',GradientType=0 );*/
+    /* IE6-9 */
+    -webkit-text-shadow: 2px 2px #bbb;
+    -moz-text-shadow: 2px 2px #bbb;
+    text-shadow: 2px 2px #bbb;
+    text-decoration: none;
+    display: block;
+}
+
+#basemapButtons {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 32px;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+    blockquote:before, blockquote:after, q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    -webkit-outline: none;
+    -moz-outline: none;
+    outline: none;
+}
+/* End Reset CSS */
+
+body {
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+header, footer, nav {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 150;
+}
+
+header {
+    /*border-bottom: solid 1px rgba(210, 228, 141, 1);*/
+    -webkit-box-shadow: 0 0 15px -2px black;
+    -moz-box-shadow: 0 0 15px -2px black;
+    box-shadow: 0 0 15px -2px black;
+}
+
+    footer, header .floodmap_title_bar {
+        text-align: left;
+        margin: 0 auto;
+        padding-left: 100px;
+    }
+
+nav .floodmap_nav {
+    height: 100%;
+}
+
+.floodmap_container {
+    margin: 10px;
+    height: auto;
+}
+
+nav .floodmap_container {
+    margin: 0;
+}
+
+nav .feedback {
+    display: none;
+}
+
+    nav .feedback a {
+        color: white;
+    }
+
+header, footer {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8) !Important;
+}
+
+footer {
+    -webkit-box-shadow: 0 0 15px -2px black;
+    -moz-box-shadow: 0 0 15px -2px black;
+    box-shadow: 0 0 15px -2px black;
+    font-size:14px;
+    line-height: 16px;
+
+    /*border-top: solid 1px rgba(210, 228, 141, 1);*/
+}
+
+footer span {
+    padding: 2px 5px;
+}
+
+    /*footer .feedback {
+        position: absolute;
+        bottom: 0;
+        right: 0.75rem;
+        padding: 2px 6px;
+    }*/
+
+
+@keyframes pulse {
+    0% {
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.05, 1.05, 1.05);
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.05, 1.05, 1.05);
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+        -webkit-transform: scale3d(1, 1, 1);
+    }
+}
+
+
+footer .feedback.pulse,
+nav .feedback.pulse {
+    animation-name: pulse;
+    -webkit-animation-name: pulse;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: 3;
+    animation-iteration-count: 3;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+a.feedback {
+    box-sizine: border-box;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 17px;
+    color: white;
+    text-decoration: none;
+    padding: 7px 6px 10px 6px;
+    border: solid 1px #0CF;
+    border-radius: 5px;
+    background: #00ccff;
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+}
+
+    a.feedback i {
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+nav {
+    /*background-color: #5e5e5e;
+    -webkit-box-shadow: 0 0 15px -2px black;
+    -moz-box-shadow: 0 0 15px -2px black;
+    box-shadow: 0 0 15px -2px black;*/
+    width: 340px;
+}
+
+
+#right-nav {
+    width: auto;
+    height: auto;
+    z-index: 1000;
+    float: right;
+    position: relative;
+    padding-top: 10px;
+}
+
+#left-nav {
+    width: auto;
+    height: auto;
+    z-index: 1000;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+    margin-left: 20px;
+}
+
+
+.floodmap_right_content {
+    /*background-color: white;*/
+    z-index: 1000;
+    /*-webkit-box-shadow: 0 0 15px -4px black;
+  -moz-box-shadow: 0 0 15px -4px black;
+  box-shadow: 0 0 15px -4px black;*/
+    background-color: rgba(247, 247, 247, 0.9);
+    border: solid 2px rgb(0, 0, 0);
+}
+
+.floodmap_container_main {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+}
+
+.floodmap_left_content,
+.floodmap_center_content,
+.floodmap_right_content {
+    display: block;
+    position: absolute;
+    top: 0;
+    /*bottom: 0;*/
+    font-size: .9em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.floodmap_map {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.floodmap_find_me {
+    position: absolute;
+    top: 78px;
+    left: 10px;
+    z-index: 480;
+    cursor: pointer;
+}
+
+.floodmap_overlay {
+    display: none;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 0 0 15px 15px;
+    border: solid 2px #000;
+    /*-webkit-box-shadow: 0 0 0 10px rgba(34,34,34,.6);
+    -moz-box-shadow: 0 0 0 10px rgba(34,34,34,.6);
+    box-shadow: 0 0 0 10px rgba(34,34,34,.6);
+    *box-shadow: 0 0 0 10px rgba(154,179,199,.8);*/
+    border-top: none;
+}
+
+
+    .floodmap_overlay a {
+        color: #00ccff;
+    }
+
+
+
+.floodmap_trigger, .floodmap_panel {
+}
+
+.floodmap_close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    z-index: 800;
+    display: block !Important;
+}
+
+.floodmap_selectclose, .floodmap_searchclose, .floodmap_infoclose, .floodmap_disclaimerclose, .floodmap_layerInfoclose {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    z-index: 800;
+    display: block !Important;
+}
+
+.floodmap_close_icon {
+    width: 30px;
+    height: 30px;
+}
+
+.floodmap_hide {
+    display: none;
+}
+
+.floodmap_toolbar {
+    position: relative;
+    top: -2px;
+    float: right;
+}
+
+.floodmap_basemap_image {
+    width: 130px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-box-shadow: 0 0 0 6px white, 0 0 0 7px black;
+    -moz-box-shadow: 0 0 0 6px white, 0 0 0 7px black;
+    box-shadow: 0 0 0 6px white, 0 0 0 7px black;
+}
+
+.floodmap_basemap_option {
+    font-family: sans-serif;
+    color: black;
+    text-decoration: none;
+    font-size: .8em;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    margin: 10px 10px 10px 10px;
+}
+
+    .floodmap_basemap_option label {
+        display: block;
+        margin-top: 5px;
+    }
+
+.floodmap_icon_text {
+    display: none;
+}
+
+    .floodmap_icon_text.floodmap_show {
+        display: inline;
+    }
+
+.floodmap_map_info {
+    font-size: 0.75em;
+    padding-top: .25em;
+}
+
+.floodmap_map_disclaimer {
+    font-size: 0.75em;
+    padding-top: .25em;
+}
+
+.floodmap_embed_code {
+    width: 100%;
+    height: 13em;
+    margin-top: 10px;
+}
+
+/** buttons, icons, inputs **/
+.floodmap_trigger, .floodmap_button, .floodmap_searchbutton, .floodmap_infobutton, .floodmap_disclaimerbutton {
+    display: inline-block;
+}
+
+.floodmap_location_input {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    font-size: 1em;
+    border: none;
+    padding: 0 5px 0 5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 85%;
+}
+
+.floodmap_location_button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    -webkit-background-size: 1em 1em;
+    -o-background-size: 1em 1em;
+    -moz-background-size: 1em 1em;
+    background-size: 1em 1em;
+}
+
+.esriSimpleSliderTL {
+    left: 19px;
+    border: 0;
+}
+
+.esriSimpleSlider {
+    background-color: rgba(0, 0, 0, 0.0) !Important;
+}
+
+    .esriSimpleSlider div {
+        width: 38px;
+        height: 34px;
+        color: #fff;
+    }
+/*
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
+    border-bottom: 0;
+    margin-bottom: 6px;
+    background-color: rgb(0, 0, 0);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-top: 4px;
+}
+
+.esriSimpleSliderVertical .esriSimpleSliderDecrementButton {
+    border-bottom: 0;
+    margin-bottom: 6px;
+    background-color: rgb(0, 0, 0);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-top: 4px;
+}
+*/
+.esriSimpleSliderTL {
+    top: 120px !important;
+}
+.esriSimpleSliderVertical .esriSimpleSliderIncrementButton , .esriSimpleSliderVertical .esriSimpleSliderDecrementButton {
+    background:black;
+    color:white;
+}
+/***************************/
+
+
+#dropdown {
+    position: absolute;
+    right: 10px;
+    width: 260px;
+    padding: 10px;
+    text-decoration: none;
+    color: #8aa8bd;
+    border-bottom: 1px solid #e6e8ea;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: solid 2px #000;
+    top: 48px;
+    z-index: 10000;
+}
+
+    #dropdown a {
+        width: 250px;
+    }
+
+
+
+#dropdown-icon {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    *color: black;
+    color: white;
+    text-decoration: none;
+    border: none;
+    background: none;
+    display: inline-block;
+    -webkit-text-shadow: 1px 1px#000;
+    -o-text-shadow: 1px 1px#000;
+    -moz-text-shadow: 1px 1px#000;
+    text-shadow: 1px 1px#000;
+    height: 38px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    width: 38px;
+    /*height: 32px;*/
+    -webkit-background-size: 32px 32px;
+    -o-background-size: 32px 32px;
+    -moz-background-size: 32px 32px;
+    background-size: 32px 32px;
+    /*float: right;*/
+    margin: 0 12px 0 10px;
+    cursor: pointer;
+}
+
+    #dropdown-icon:hover {
+        color: #fff;
+        background: #87e7ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+        /* IE6-9 */
+        /*border-left: solid 1px #fff;
+        border-right: solid 1px #fff;*/
+        -webkit-text-shadow: 2px 2px #00B6FF;
+        -moz-text-shadow: 2px 2px #00B6FF;
+        text-shadow: 2px 2px #00B6FF;
+        -webkit-box-shadow: 0 0 15px -4px black;
+        -moz-box-shadow: 0 0 15px -4px black;
+        box-shadow: 0 0 15px -4px black;
+    }
+
+
+
+/* override elements */
+.floodmap_no_margin {
+    margin: 0;
+}
+
+/* webkit scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.3) inset;
+    -moz-box-shadow: 0 0 6px rgba(0,0,0,0.3) inset;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3) inset;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(34,34,34,.7);
+    -webkit-box-shadow: 0 0 6px rgba(0,0,0,.6) inset;
+    -moz-box-shadow: 0 0 6px rgba(0,0,0,.6) inset;
+    box-shadow: 0 0 6px rgba(0,0,0,.6) inset;
+}
+
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(34,34,34,.1);
+    }
+
+#mapDiv {
+    z-index: 150;
+}
+
+.dijitTextBox {
+    width: 70%;
+    float: left;
+    height: 34px !Important;
+    padding-left: 2%;
+    margin-right: 3%;
+}
+
+#txtPrintTitle {
+    border: none !Important;
+    width: 61% !Important;
+    margin-right: 3%;
+    float: left;
+    height: 26px !Important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #000;
+    margin-top: 2px;
+    color: #fff;
+    margin-left: 0;
+    padding-left: 3% !Important;
+}
+
+.inner-content{
+    max-width:284px;
+    margin:0 auto;
+}
+
+.arcgisSearch{
+    width:100% !important;
+}
+
+
+#mapPoints h3 {
+    font-size: 18px !important;
+    color: #fff;
+}
+
+#mapPoints h4 {
+    font-size: 20px;
+    text-align: center;
+    color: #000;
+}
+
+#mapPoints strong {
+    font-weight: 700;
+}
+
+#mapPoints td {
+    width: 64%;
+    /*padding: 3px 4px 3px 10px !Important;*/
+    padding: 4px;
+    font-size: 11px;
+}
+
+#mapPoints tr {
+}
+
+.header {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0) !Important;
+    background-repeat: no-repeat;
+    background-position: right center;
+    display: table-row !important;
+    background: url(../images/select-icons.png) 98% -116px no-repeat;
+}
+
+    .header:hover {
+        background: url(../images/select-icons.png) 98% -167px no-repeat;
+    }
+
+
+.headerOpen {
+    background: url(../images/select-icons.png) 98% -16px no-repeat;
+}
+
+    .headerOpen:hover {
+        background: url(../images/select-icons.png) 98% -66px no-repeat;
+    }
+
+/*.header-active
+{
+    cursor: pointer;
+    background-image: url(../images/arrowup.png) !Important;
+}*/
+
+#mapPoints table {
+    background-color: rgb(247, 247, 247);
+    width: 100%;
+}
+
+    #mapPoints table tr td span[style] {
+        text-decoration: none !important;
+    }
+
+.pointstable-wrap {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: solid 3px #000;
+    -moz-box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+    -webkit-box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+    box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+    margin-bottom: 20px;
+    float: left;
+    width: 98%;
+    background-color: #000;
+}
+
+
+
+    .pointstable-wrap table tbody tr:nth-child(even) {
+        background-color: rgb(218, 218, 218);
+    }
+
+    .pointstable-wrap table tbody tr:nth-child(odd) {
+        background-color: rgb(199, 199, 199);
+    }
+
+
+#btnLocate {
+    width: 24% !Important;
+}
+
+input[type=button] {
+    color: #fff;
+    padding: 9px 0px !important;
+    border: solid 1px #0CF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+    -webkit-text-shadow: 1px 1px #00B6FF;
+    -moz-text-shadow: 1px 1px #00B6FF;
+    text-shadow: 1px 1px #00B6FF;
+    font-weight: bold;
+    font-size: 12px;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+    line-height: 17px;
+}
+
+    input[type=button]:hover {
+        background-color: #ccc;
+    }
+
+
+
+
+
+@media all and (min-width: 480px) {
+
+    .esriPopup .titleButton.close {
+        right: -15px !Important;
+        top: -16px !Important;
+        /*border: solid 2px #000;*/
+        border-radius: 16px;
+        width: 20px;
+        height: 20px;
+        background-color: #00ccff !Important;
+        padding: 5px;
+        background: url(../images/closebtn.png) no-repeat;
+    }
+}
+
+
+
+@media all and (max-width: 480px) {
+
+
+    .slider-track {
+        width: 78% !Important;
+    }
+
+
+    .floodmap_container_main {
+        bottom: 0em !Important;
+    }
+
+    #agcenter-logo {
+        bottom: 62px !Important;
+        right: 0 !Important;
+        opacity: 0.7;
+    }
+
+    .floodmap_button, .floodmap_searchbutton {
+        float: left !Important;
+    }
+
+
+    #iconKey .icon-search,
+    #iconKey .icon-print,
+    #iconKey .icon-key,
+    #iconKey .icon-calendar,
+    #iconKey .icon-globe,
+    #iconKey .icon-map-marker,
+    #iconKey .zocial-buffer {
+        width: 34% !Important;
+    }
+
+
+
+
+    #iconKey li {
+        margin-bottom: 13px;
+        display: inline-block;
+        width: 65%;
+        float: left;
+        position: relative;
+        /*height: 75px;*/
+    }
+
+
+
+
+
+
+
+
+
+    #dotd-logo {
+        display: none;
+    }
+
+
+    .communitycontact-wrap table tbody tr td {
+        float: left;
+        width: 95%;
+    }
+
+    .communitycontact-wrap {
+        width: auto !Important;
+    }
+
+
+
+    .windspeed-wrap table tbody tr td {
+        width: 60%;
+    }
+
+        .windspeed-wrap table tbody tr td:nth-child(2) {
+            width: 20%;
+        }
+
+    .windspeed-wrap {
+        width: auto !Important;
+    }
+
+
+    .esriPopup .titleButton.close {
+        right: 0 !Important;
+        top: 0 !Important;
+        border-radius: 16px;
+        width: 20px;
+        height: 20px;
+        background-color: #00ccff !Important;
+        padding: 5px;
+        background: url(../images/closebtn.png) no-repeat;
+    }
+
+
+    .panelheader-wrap {
+        top: 62px !Important;
+    }
+
+    #dropdown-icon {
+        margin: 0 16px 0 10px !Important;
+    }
+
+
+    .floodmap_right_content {
+        top: 104px !Important;
+    }
+
+
+
+    .floodmap_disclaimer {
+        z-index: 1000;
+    }
+
+    .floodmap_layerInfo {
+        z-index: 1000;
+    }
+
+
+    .floodmap_searchbutton, #dropdown-icon {
+    }
+
+    #dropdown {
+        top: 41px !Important;
+        right: 12px !Important;
+    }
+
+
+    .esriPopup {
+        width: 95% !Important;
+        left: .5em !Important;
+        right: .5em !Important;
+        bottom: 7em !Important;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+        top: 20px !Important;
+    }
+
+    .esriPopupWrapper {
+        left: 14px !Important;
+        bottom: 3.3em !Important;
+        top: 40px !important;
+        background-color: #F7F7F7;
+        right: 6px !Important;
+    }
+
+    .sizer {
+        width: 100% !Important;
+    }
+
+    .pointer, .outerPointer {
+        display: none;
+    }
+}
+
+
+
+/* anything but phone */
+@media all and (min-width: 768px) {
+
+
+
+    .disclaimer-popup {
+        font-size: 16px !Important;
+    }
+
+
+    .slider-track {
+        width: 74% !Important;
+    }
+
+    .panelheader-legend {
+        width: 610px !Important;
+        right: 20px !Important;
+    }
+
+    .panelcontent-legend {
+        width: 590px !Important;
+    }
+
+
+
+    /*#loadingImg {
+        left: 45%;
+        top: 45%;
+        position: absolute;
+        z-index: 1000;
+        width:40px;
+        height:40px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 10px 0 0 10px;
+    }*/
+
+
+
+
+
+
+
+    .floodmap_settings {
+        width: 270px;
+    }
+
+    .map .bingLogo-lg {
+        bottom: 36px !Important;
+        left: 16px;
+    }
+
+    .esriControlsBR {
+        bottom: 36px !Important;
+    }
+
+    .esriSimpleSliderTL {
+        top: 100px;
+    }
+
+    .esriScalebar {
+        top: 100px;
+        left: 77px;
+    }
+
+    .floodmap_button, .floodmap_searchbutton {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        font-weight: bold;
+        *color: black;
+        color: white;
+        text-decoration: none;
+        border: none;
+        background: none;
+        display: inline-block;
+        -webkit-text-shadow: 1px 1px #000;
+        -moz-text-shadow: 1px 1px #000;
+        text-shadow: 1px 1px #000;
+        width: 38px;
+        height: 38px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+
+
+
+
+
+
+
+    /* end desktop images */
+
+    header {
+        top: 0;
+        height: 4em;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    footer {
+        bottom: 0;
+        height: 1.5em;
+    }
+
+    nav {
+        top: 0;
+        margin: 0;
+        padding-top: 10px;
+        height: 2.5em;
+        position: relative;
+        float: right;
+    }
+
+    header .floodmap_title_bar {
+        font-size: 1.5em;
+        margin-top: .7em;
+    }
+
+    .floodmap_container_main {
+        top: 3.5em;
+        bottom: 0em;
+    }
+
+    .floodmap_right_content {
+        right: 20px;
+        display: none;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 0 0 15px 15px;
+        top: 143px;
+        /*bottom: 1em;*/
+        padding: 8px 20px 8px 20px;
+        /*max-height: 460px;*/
+        z-index: 500;
+        border-top: none;
+    }
+
+    .panelcontent-events,
+    .panelcontent-print,
+    .panelcontent-points,
+    .panelcontent-layers {
+        width: 290px;
+    }
+
+
+    .floodmap_center_content {
+        left: 0;
+        right: 300px;
+    }
+
+    nav .floodmap_nav {
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    .floodmap_float_right {
+        /*float: right;*/
+    }
+
+    .floodmap_basemap_list {
+        top: 10em;
+        height: 260px;
+        width: 500px;
+        left: 30%;
+        overflow: auto;
+    }
+
+    #basemapList {
+        width: 100%;
+    }
+
+    .floodmap_measurement {
+        top: 10em;
+        height: 120px;
+        width: 250px;
+        left: 30%;
+    }
+
+    .floodmap_search, .floodmap_search_suggestions {
+        left: 35%;
+        right: 35%;
+        top: 10em;
+        height: auto;
+        padding: 45px 15px 15px 15px;
+        border: solid 2px #000;
+        border-radius: 15px 15px 15px 15px;
+        width: 329px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floodmap_search_suggestions {
+        padding-top: 15px;
+    }
+
+    .search-again {
+        margin-top: 15px;
+    }
+
+    .floodmap_select {
+        left: 35%;
+        right: 35%;
+        top: 10em;
+        height: auto;
+        padding: 45px 15px 15px 15px;
+        border: solid 2px #000;
+        border-radius: 15px 15px 15px 15px;
+        width: 329px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .floodmap_button_active {
+        background: #87e7ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+        /* IE6-9 */
+        color: #fff;
+        /*border-left: solid 1px #fff;
+        border-right: solid 1px #fff;*/
+        -webkit-text-shadow: 1px 1px #00B6FF;
+        -moz-text-shadow: 1px 1px #00B6FF;
+        text-shadow: 1px 1px #00B6FF;
+        -webkit-box-shadow: 0 0 15px -4px black;
+        -moz-box-shadow: 0 0 15px -4px black;
+        box-shadow: 0 0 15px -4px black;
+    }
+
+    .floodmap_searchbutton_active {
+        background: #87e7ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+        /* IE6-9 */
+        color: #fff;
+        /*border-left: solid 1px #fff;
+        border-right: solid 1px #fff;*/
+        -webkit-text-shadow: 1px 1px #00B6FF;
+        -moz-text-shadow: 1px 1px #00B6FF;
+        text-shadow: 1px 1px #00B6FF;
+        -webkit-box-shadow: 0 0 15px -4px black;
+        -moz-box-shadow: 0 0 15px -4px black;
+        box-shadow: 0 0 15px -4px black;
+    }
+
+    .floodmap_button:hover, .floodmap_searchbutton:hover {
+        color: #fff;
+        background: #87e7ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+        /* IE6-9 */
+        /*border-left: solid 1px #fff;
+        border-right: solid 1px #fff;*/
+        -webkit-text-shadow: 1px 1px #00B6FF;
+        -moz-text-shadow: 1px 1px #00B6FF;
+        text-shadow: 1px 1px #00B6FF;
+        -webkit-box-shadow: 0 0 15px -4px black;
+        -moz-box-shadow: 0 0 15px -4px black;
+        box-shadow: 0 0 15px -4px black;
+    }
+
+        .floodmap_button .floodmap_icon,
+        .floodmap_button:hover .floodmap_icon,
+        .floodmap_searchbutton .floodmap_icon,
+        .floodmap_searchbutton:hover .floodmap_icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            -webkit-background-size: 24px 24px;
+            -o-background-size: 24px 24px;
+            -moz-background-size: 24px 24px;
+            background-size: 24px 24px;
+        }
+
+
+
+
+
+    .dropdown-icon-active {
+        color: #fff !Important;
+        background: #87e7ff !Important;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%) !Important;
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff)) !Important;
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%) !Important;
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 ) !Important;
+        /* IE6-9 */
+        /*border-left: solid 1px #fff;
+        border-right: solid 1px #fff;*/
+        -webkit-text-shadow: 2px 2px #00B6FF !Important;
+        -moz-text-shadow: 2px 2px #00B6FF !Important;
+        text-shadow: 2px 2px #00B6FF !Important;
+        -webkit-box-shadow: 0 0 15px -4px black !Important;
+        -moz-box-shadow: 0 0 15px -4px black !Important;
+        box-shadow: 0 0 15px -4px black !Important;
+    }
+
+
+
+
+
+    .floodmap_infobutton_active, .floodmap_disclaimerbutton_active {
+        background: #00ccff;
+        color: #fff;
+        /*border-bottom: solid 1px #333;*/
+    }
+
+    .floodmap_infobutton:hover, .floodmap_disclaimerbutton:hover {
+        background: #00ccff;
+        color: #fff;
+        /*border-bottom: solid 1px #333;*/
+    }
+
+        .floodmap_infobutton .floodmap_icon,
+        .floodmap_infobutton:hover .floodmap_icon,
+        .floodmap_disclaimerbutton .floodmap_icon,
+        .floodmap_disclaimerbutton:hover .floodmap_icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            -webkit-background-size: 24px 24px;
+            -o-background-size: 24px 24px;
+            -moz-background-size: 24px 24px;
+            background-size: 24px 24px;
+        }
+
+
+
+
+
+
+    .icon-text {
+        font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+        color: #fff;
+        font-size: 12px !Important;
+        -webkit-text-shadow: none !Important;
+        text-shadow: none !Important;
+    }
+
+
+
+
+
+
+    .floodmap_icon {
+        position: relative;
+        top: 6px;
+    }
+
+    .floodmap_close, .floodmap_infoclose, .floodmap_disclaimerclose, .floodmap_layerInfoclose {
+        width: 30px;
+        height: 30px;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn-white.png) no-repeat;
+        z-index: 1000;
+    }
+
+    .floodmap_searchclose {
+        width: 30px;
+        height: 30px;
+        margin: 4px 12px 0 0;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn.png) no-repeat;
+    }
+
+
+    .floodmap_selectclose {
+        width: 30px;
+        height: 30px;
+        margin: 4px 12px 0 0;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn.png) no-repeat;
+    }
+
+
+
+
+    .floodmap_button {
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+
+
+
+
+    .floodmap_infobutton, .floodmap_disclaimerbutton {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: .9em;
+        font-weight: bold;
+        color: #00ccff;
+        text-decoration: none;
+        border: none;
+        background: none;
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        text-align: left;
+        padding-left: 10px;
+        margin: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+    }
+}
+
+
+
+@media all and (max-width: 1279px) {
+
+    .floodmap_center_content.floodmap_right {
+        right: 0;
+    }
+
+    .floodmap_center_content.floodmap_left {
+        left: 0;
+    }
+
+    /*.floodmap_search {
+        left: 30%;
+        right: 30%;
+    }*/
+
+    /*.floodmap_select {
+        left: 35%;
+        right: 35%;
+    }*/
+
+    .floodmap_info {
+        left: 25%;
+        right: 25%;
+    }
+
+    .middlepanel-header {
+        left: 25%;
+        right: 25%;
+        top: 110px;
+        border-left: solid 2px #000;
+        border-right: solid 2px #000;
+        border-top: solid 2px #000;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        z-index: 1001;
+        font-size: 27px;
+    }
+
+    .floodmap_disclaimer {
+        left: 25%;
+        right: 25%;
+    }
+
+    .floodmap_layerInfo {
+        left: 25%;
+        right: 25%;
+    }
+
+    #legend-window {
+        left: 25%;
+        right: 25%;
+    }
+}
+
+
+
+@media all and (min-width: 1024px) {
+
+
+
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 32px;
+    }
+
+    [class^="zocial-"], [class*=" zocial-"] {
+        font-size: 27px;
+    }
+}
+
+
+
+/* tab */
+@media all and (max-width: 1024px) {
+
+    .icon-text {
+        display: none !Important;
+    }
+
+    .floodmap_settings_trigger .icon-text {
+        display: none !Important;
+    }
+
+    footer, header .floodmap_title_bar {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+
+
+
+
+    .panelheader-wrap {
+        top: 61px;
+    }
+
+
+    #dropdown {
+        top: 42px;
+    }
+
+    header .floodmap_title_bar {
+        font-size: 1.5em;
+        margin-top: .3em;
+    }
+
+
+
+    .floodmap_close {
+    }
+
+    .floodmap_right_content {
+        display: none;
+        top: 102px;
+    }
+
+    .floodmap_center_content {
+        left: 0;
+        right: 0;
+    }
+
+    .floodmap_search {
+        /*left: 25%;
+        right: 25%;*/
+        border: solid 2px #000;
+        border-radius: 15px 15px 15px 15px;
+        padding: 45px 15px 15px 15px !Important;
+    }
+
+    .floodmap_select {
+        /*left: 30%;
+        right: 30%;*/
+        border: solid 2px #000;
+        border-radius: 15px 15px 15px 15px;
+        padding: 45px 15px 15px 15px !Important;
+    }
+
+    .floodmap_info {
+        left: 20%;
+        right: 20%;
+        top: 9.7em;
+    }
+
+    .middlepanel-header {
+        left: 20%;
+        right: 20%;
+        top: 69px;
+        z-index: 1000;
+    }
+
+    .floodmap_disclaimer {
+        left: 20%;
+        right: 20%;
+        top: 7.2em;
+    }
+
+    .floodmap_layerInfo {
+        left: 20%;
+        right: 20%;
+        top: 7.2em;
+    }
+
+    #legend-window {
+        left: 20%;
+        right: 20%;
+    }
+
+    .floodmap_panel {
+        padding-top: 0;
+    }
+
+    nav {
+        top: 10.5em;
+        left: 1.0em;
+        height: auto;
+        width: 44px;
+        padding: 0;
+        float: none;
+    }
+
+    header {
+        height: 2.9em;
+        padding: 0;
+    }
+
+    #right-nav {
+        padding-top: 3px;
+    }
+
+    #left-nav {
+        padding-top: 3px;
+        z-index: 1000;
+        position: fixed;
+        float: left;
+        left: 0;
+        margin-right: 0;
+        top: 0;
+    }
+
+    .floodmap_container_main {
+        top: 2.5em;
+    }
+
+    .floodmap_button {
+        height: 38px;
+        width: 38px;
+        float: left;
+        text-align: center;
+        background-color: #000;
+        margin-bottom: 12px;
+        margin: 0 3px 17px 4px;
+    }
+
+    .esriSimpleSliderTL {
+        top: 60px !Important;
+    }
+
+    .esriScalebar {
+        top: 60px !Important;
+        left: 77px;
+    }
+}
+
+
+
+/* phone */
+@media all and (max-width: 767px) {
+
+
+    .floodmap_disclaimerpopupclose {
+        width: 95%;
+        float: left;
+    }
+
+    .moreInfoLink {
+        width: 100%;
+        margin: 0;
+        float: left;
+        margin-top: 20px;
+    }
+
+    .slider-track {
+        width: 87%;
+    }
+
+    #agcenter-logo {
+        background: url(../images/agcenter-logo.gif) no-repeat;
+        width: 65px;
+        height: 37px;
+        background-size: 65px 37px;
+        position: absolute;
+        right: 20px;
+        z-index: 150;
+        bottom: 36px;
+    }
+
+    #dotd-logo {
+        background: url(../images/dotdlogo.png) no-repeat;
+        width: 65px;
+        height: 37px;
+        position: absolute;
+        right: 80px;
+        z-index: 150;
+        bottom: 36px !Important;
+    }
+
+    nav .feedback {
+        display: block;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 22px;
+    }
+
+
+
+    .sbOptions {
+        bottom: 30px;
+        top: -257px !Important;
+        height: 255px;
+        max-height: 255px !Important;
+    }
+
+    .panelheader-legend {
+        left: 16px !Important;
+        right: 18px !Important;
+    }
+
+    .floodmap_info h2 {
+        margin-top: 20px;
+    }
+
+    .floodmap_disclaimer h2 {
+        margin-top: 20px;
+    }
+
+    .floodmap_layerInfo h2 {
+        margin-top: 20px;
+    }
+
+    .panelheader-wrap {
+        top: 62px;
+        right: 16px !Important;
+        left: 16px;
+        width: auto !Important;
+        border-bottom: none;
+    }
+
+    #dropdown-icon {
+        float: none;
+        background-color: none !important;
+    }
+
+    .floodmap_infobutton, .floodmap_disclaimerbutton {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: .9em;
+        font-weight: bold;
+        color: #00ccff;
+        text-decoration: none;
+        border: none;
+        background: none;
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        text-align: left;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .floodmap_infobutton_active, .floodmap_disclaimerbutton_active {
+        background: #00ccff;
+        color: #fff;
+    }
+
+    .floodmap_infobutton:hover, .floodmap_disclaimerbutton:hover {
+        background: #00ccff;
+        color: #fff;
+    }
+
+
+
+
+    #loadingImg {
+        background-image: url('../images/fancybox_sprite.png');
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -22px;
+        margin-left: -22px;
+        background-position: 0 -108px;
+        opacity: 0.8;
+        cursor: pointer;
+        z-index: 8060;
+    }
+
+
+    /*#loadingImg div {
+	width: 44px;
+	height: 44px;
+	background: url('../images/fancybox_loading.gif') center center no-repeat;
+}*/
+    .floodmap_points {
+        width: 100%;
+    }
+
+    #iconKey .icon-search,
+    #iconKey .icon-print,
+    #iconKey .icon-key,
+    #iconKey .icon-calendar,
+    #iconKey .icon-globe,
+    #iconKey .icon-map-marker,
+    #iconKey .zocial-buffer {
+        font-size: 40px;
+        width: 14%;
+        float: left !Important;
+        text-align: center;
+    }
+
+
+
+    #floodmap_legendDiv {
+        width: 100%;
+    }
+
+    .map .bingLogo-lg {
+        bottom: 74px !Important;
+        left: 16px;
+    }
+
+    .esriControlsBR {
+        bottom: 74px !Important;
+    }
+
+    .floodmap_print {
+        width: 100%;
+    }
+
+    #agcenter-logo {
+        bottom: 19px;
+        right: 4px;
+        z-index: 150;
+    }
+
+    #dotd-logo {
+        bottom: 19px !Important;
+    }
+
+
+
+
+
+    /* end image overrides */
+
+    .floodmap_right_content, .floodmap_left_content {
+        display: none;
+        left: 16px;
+        right: 16px;
+        /*-webkit-box-shadow: 0 0 0 black;
+    -moz-box-shadow: 0 0 0 black;
+    box-shadow: 0 0 0 black;*/
+    }
+
+    .floodmap_center_content {
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    header {
+        height: 2.9em;
+        -webkit-box-shadow: 0 0 15px -2px black;
+        -moz-box-shadow: 0 0 15px -2px black;
+        box-shadow: 0 0 15px -2px black;
+        top: 0em;
+    }
+
+    footer {
+        display: none;
+    }
+
+    .floodmap_container_main {
+        top: 1.8em;
+        bottom: 3.5em;
+        right: 1em;
+        left: 1em;
+    }
+
+    .floodmap_right_content {
+        display: none;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 0 0 15px 15px;
+        bottom: 5em;
+        top: 104px;
+        padding: 8px;
+        z-index: 500;
+        border-top: none;
+    }
+
+
+    #modal {
+        bottom: 60px;
+        top: 46px;
+        padding: 8px;
+        position: absolute;
+        background-color: #ccc;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        z-index: 150;
+    }
+
+
+
+    #modal2 {
+        bottom: 0px;
+        top: 0px;
+        padding: 8px;
+        position: fixed;
+        background-color: #fff;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+
+
+
+
+    header .floodmap_title_bar {
+        font-size: 1.2em;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        margin: 0.5em 0.5em 0.5em 0em;
+        overflow: hidden;
+        height: 36px;
+        white-space: nowrap;
+    }
+
+    .floodmap_overlay, .floodmap_search, .floodmap_select {
+        top: 5em;
+        left: 30px;
+        right: 30px;
+        margin-bottom: 20px;
+        padding: 0 15px 15px 15px;
+        height:200px;
+        overflow: auto;
+    }
+
+    .floodmap_info {
+        left: 20px;
+        right: 20px;
+        top: 9em;
+        bottom: 4em;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .middlepanel-header {
+        left: 20px;
+        right: 20px;
+        top: 61px;
+    }
+
+    .floodmap_disclaimer {
+        left: 20px;
+        right: 20px;
+        top: 6.7em;
+        bottom: 3em;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .floodmap_layerInfo {
+        left: 20px;
+        right: 20px;
+        top: 6.7em;
+        bottom: 3em;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    #legend-window {
+        left: 10px;
+        right: 10px;
+        top: 1em;
+        bottom: 1em;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .floodmap_info h1 {
+        font-size: 20px;
+    }
+
+    .floodmap_info p {
+        /*font-size:12px;*/
+    }
+
+    .floodmap_disclaimer h1 {
+        font-size: 20px;
+    }
+
+    .floodmap_disclaimer p {
+        /*font-size:12px;*/
+    }
+
+    .floodmap_layerInfo h1 {
+        font-size: 20px;
+    }
+
+    .floodmap_layerInfo p {
+        /*font-size:12px;*/
+    }
+
+    .floodmap_measurement {
+        height: 120px;
+    }
+
+    .floodmap_basemap_image {
+        width: 120px;
+    }
+
+    .floodmap_basemap_list {
+        max-height: 80%;
+        overflow-y: auto;
+    }
+
+    .floodmap_button, .floodmap_searchbutton {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        font-weight: bold;
+        *color: black;
+        color: white;
+        text-decoration: none;
+        border: none;
+        background: none;
+        display: inline-block;
+        -webkit-text-shadow: 1px 1px#000;
+        -o-text-shadow: 1px 1px#000;
+        -moz-text-shadow: 1px 1px#000;
+        text-shadow: 1px 1px#000;
+        width: 38px;
+        height: 38px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        float: none;
+        margin-bottom: 0;
+    }
+
+        .floodmap_button .floodmap_icon, .floodmap_button:hover .floodmap_icon,
+        .floodmap_searchbutton .floodmap_icon, .floodmap_searchbutton:hover .floodmap_icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            -webkit-background-size: 32px 32px;
+            -o-background-size: 32px 32px;
+            -moz-background-size: 32px 32px;
+            background-size: 32px 32px;
+            *padding: 5px;
+        }
+
+        #dropdown-icon:hover,
+        .floodmap_button:hover,
+        .floodmap_searchbutton:hover,
+        .floodmap_button_active,
+        .floodmap_searchbutton_active {
+            color: #fff;
+            background: #87e7ff;
+            /* Old browsers */
+            background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+            /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+            /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+            /* IE10+ */
+            background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+            /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+            -webkit-text-shadow: none !Important;
+            text-shadow: none !Important;
+        }
+
+    .floodmap_icon_text, .floodmap_icon_text.floodmap_show {
+        display: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .floodmap_close {
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        background: url(../images/closebtn-white.png) no-repeat;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        top: -6px !Important;
+        right: -7px !Important;
+    }
+
+    .floodmap_searchclose {
+        width: 30px;
+        height: 30px;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn.png) no-repeat;
+        margin: 4px 12px 0 0;
+        z-index: 1;
+    }
+
+    .floodmap_selectclose {
+        width: 30px;
+        height: 30px;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn.png) no-repeat;
+        margin: 4px 12px 0 0;
+        z-index: 1;
+    }
+
+
+    .floodmap_infoclose, .floodmap_disclaimerclose, .floodmap_layerInfoclose {
+        width: 30px;
+        height: 30px;
+        -webkit-background-size: 30px 30px;
+        -o-background-size: 30px 30px;
+        -moz-background-size: 30px 30px;
+        background-size: 30px 30px;
+        background: url(../images/closebtn-white.png) no-repeat;
+        margin: 4px 12px 0 0;
+        z-index: 1;
+    }
+
+
+    .floodmap_location_input {
+        font-size: 2em;
+        width: 80%;
+    }
+
+    .floodmap_location_button {
+        position: relative;
+        top: 2px;
+        width: 2em;
+        height: 2em;
+        display: inline-block;
+        -webkit-background-size: 2em 2em;
+        -o-background-size: 2em 2em;
+        -moz-background-size: 2em 2em;
+        background-size: 2em 2em;
+    }
+
+    .floodmap_panel {
+        padding-top: 0;
+    }
+
+    .floodmap_float_right {
+        float: none;
+    }
+
+    nav {
+        background-color: rgba(0, 0, 0, 0.8) !Important;
+        left: 0em;
+        height: auto;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        bottom: 0em !Important;
+        top: auto;
+    }
+
+    .floodmap_nav {
+        display: block;
+        /*min-width: 380px;*/
+        text-align: center;
+    }
+
+    .esriSimpleSliderTL {
+        top: 60px !Important;
+    }
+
+    .esriScalebar {
+        top: 60px !Important;
+        left: 77px;
+    }
+
+
+
+
+    #dropdown {
+        position: absolute;
+        right: 10px;
+        width: 260px;
+        padding: 10px;
+        text-decoration: none;
+        color: #8aa8bd;
+        border-bottom: 1px solid #e6e8ea;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: solid 2px #000;
+        z-index: 10000;
+    }
+
+        #dropdown a {
+            width: 250px;
+        }
+
+
+
+
+    #dropdown-icon:hover {
+        color: #fff;
+        background: #87e7ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%);
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff));
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%);
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%);
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 );
+        -webkit-text-shadow: none !Important;
+        text-shadow: none !Important;
+    }
+
+
+
+    .dropdown-icon-active {
+        color: #fff !Important;
+        background: #87e7ff !Important;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #87e7ff 0%, #00ccff 100%) !Important;
+        /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e7ff), color-stop(100%,#00ccff)) !Important;
+        /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #87e7ff 0%,#00ccff 100%) !Important;
+        /* IE10+ */
+        background: linear-gradient(to bottom, #87e7ff 0%,#00ccff 100%) !Important;
+        /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e7ff', endColorstr='#00ccff',GradientType=0 ) !Important;
+        -webkit-text-shadow: none !Important;
+        text-shadow: none !Important;
+    }
+
+
+
+
+
+    .floodmap_title_bar {
+        text-align: left !Important;
+        padding-left: 18px;
+    }
+}
+
+
+
+
+
+
+
+
+.communitycontact-wrap {
+    font-size: 12px;
+    width: 450px;
+}
+
+
+    .communitycontact-wrap table h2 {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #fff;
+        width: 200px;
+        margin-right: 0;
+        float: left;
+    }
+
+    .communitycontact-wrap table {
+        width: 100%;
+    }
+
+
+        .communitycontact-wrap table tbody tr:nth-child(even) {
+            background-color: rgb(218, 218, 218);
+        }
+
+        .communitycontact-wrap table tbody tr:nth-child(odd) {
+            background-color: rgb(199, 199, 199);
+        }
+
+        .communitycontact-wrap table tbody tr td {
+            padding-left: 5%;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+            .communitycontact-wrap table tbody tr td strong {
+                font-weight: 600;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+.windspeed-wrap {
+    font-size: 12px;
+    width: 450px;
+}
+
+
+    .windspeed-wrap table h2 {
+        font-size: 19px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #fff;
+        margin-right: 0;
+        float: left;
+    }
+
+    .windspeed-wrap table {
+        width: 100%;
+    }
+
+
+        .windspeed-wrap table tbody tr:nth-child(even) {
+            background-color: rgb(218, 218, 218);
+        }
+
+        .windspeed-wrap table tbody tr:nth-child(odd) {
+            background-color: rgb(199, 199, 199);
+        }
+
+        .windspeed-wrap table tbody tr td {
+            padding: 5px 16px 5px 4%;
+        }
+
+            .windspeed-wrap table tbody tr td strong {
+                font-weight: 600;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+.esriPopup .sizer {
+    width: 320px;
+}
+
+
+
+.floodmap_meetings table h3 {
+    font-size: 20px;
+    color: #fff;
+    width: 200px;
+    margin: 0;
+    float: left;
+}
+
+
+
+
+
+
+
+
+
+
+.disclaimer-popup {
+    width: 70%;
+    padding: 3% 15% 15% 15%;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    z-index: 10000;
+    background: rgba(0, 0, 0, .9);
+    /*content: "While the floodplain data that is shown on this map is the same, this map is not an official FEMA Preliminary Digital Flood Insurance Rate Map (DFIRM). This Interactive Mapping Tool is not intended for insurance rating purposes and is for information only. The find an address may not be 100% accurate in locating your address. Please contact your local floodplain administrator for more information or to view an official copy of the Preliminary Digital Flood Insurance Rate Map (DFIRM).";*/
+    bottom: 0px;
+    top: 0px;
+    overflow: auto;
+    text-align: center;
+}
+
+    .disclaimer-popup h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .disclaimer-popup a {
+        color: #00ccff;
+    }
+
+
+
+
+    /*
+
+
+.dijitSliderButtonContainer * {
+    width: 19px !Important;
+    height: 19px !Important;
+    font-size: 24px !Important;
+    line-height: 20px !Important;
+    padding: 0px !Important;
+}
+
+
+
+
+.dijitSliderButtonContainer {
+    background-color: #fff;
+    border-radius: 3px;
+    color: #000;
+}
+
+
+.dijitSliderBarContainerH {
+    background-color: #fff;
+}
+
+
+
+.dijitSliderTopBumper, .dijitSliderRightBumper {
+    background-color: #fff !important;
+}
+
+.dijitSliderBottomBumper, .dijitSliderLeftBumper {
+    background-color: #00ccff !important;
+}
+
+
+.dijitSliderProgressBar {
+    background-color: #00ccff !important;
+}
+
+.dijitSliderImageHandle {
+    border-radius: 3px;
+}
+
+*/
+
+
+.layerQuestion {
+    float: right;
+    position: absolute;
+    right: 43px;
+    font-size: 15px;
+    line-height: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: solid 1px #BBB;
+    background: #aaa;
+    background: -moz-linear-gradient(top, #ddd 0%, #aaa 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(100%,#aaa));
+    background: -webkit-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: -o-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: -ms-linear-gradient(top, #ddd 0%,#aaa 100%);
+    background: linear-gradient(to bottom, #ddd 0%,#aaa 100%);
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddd', endColorstr='#aaa',GradientType=0 );*/
+    -webkit-text-shadow: 2px 2px #bbb;
+    -moz-text-shadow: 2px 2px #bbb;
+    text-shadow: 2px 2px #bbb;
+    width: 19px;
+    height: 19px;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+}
+
+
+/*------------------------------------------*/
+/* Inline expand-down style seclusion text  */
+/*------------------------------------------*/
+
+.esriPopup .contentPane {
+    max-height: 500px;
+}
+
+.info-seclusion {
+    position: relative;
+    cursor: pointer;
+    /*background:#efefef;*/
+}
+
+    .info-seclusion .icon-question-sign {
+        font-size: 1.1rem;
+        line-height: 1.25rem;
+        color: red;
+    }
+
+.info-hover {
+    background: #EFEFEF;
+    border: 1px solid red;
+    color: #111;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 18px;
+    position: relative;
+    font-weight: normal;
+    text-align: center;
+    display: none;
+    padding: 8px 16px;
+    margin-top: 5px;
+}
+
+    .info-hover:after {
+    }
+
+    .info-seclusion:hover .info-hover {
+        display: block;
+    }
+
+
+/*---------------------------------------*/
+/* Popup style seclusion text            */
+/*---------------------------------------*/
+
+
+/*.esriPopup .contentPane {
+    overflow: visible;
+}
+
+.info-seclusion {
+    outline: none;
+}
+
+    .info-seclusion strong {
+        line-height: 30px;
+    }
+
+    .info-seclusion:hover {
+        text-decoration: none;
+    }
+
+    .info-seclusion .info-hover {
+        z-index: 10;
+        display: none;
+        padding: 8px 16px;
+        margin-top: 10px;
+        margin-left: -10px;
+        width: 300px;
+        line-height: 16px;
+    }
+
+    .info-seclusion:hover .info-hover {
+        display: inline;
+        position: absolute;
+        color: #111;
+        border: 1px solid red;
+        background: #efefef;
+    }
+
+.info-seclusion .info-hover {
+    border-radius: 4px;
+    box-shadow: 5px 5px 8px #CCC;
+}*/
+
+
+
+
+
+
+
+
+/*.dj_a11y div.dijitSliderImageHandle, .dijitSliderImageHandle {
+border: 0px solid #00ccff !Important;
+border-radius: 3px;
+background-color: #00ccff;
+width: 20px;
+height: 20px;
+}
+
+.dijitSliderImageHandleH {
+top: -8px !Important;
+left: 0 !Important;  
+}
+
+.dijitSliderProgressBar {
+background-color: #fff !Important;
+}
+
+.dijitSliderBottomBumper, .dijitSliderLeftBumper {
+background-color: #fff !Important;
+}
+
+.dijitSliderButtonContainer * {
+width: 20px;
+font-size: 15px;
+height: 20px;
+font-weight:600;
+line-height:14px;
+display:none;
+}
+
+
+
+.dijitReset {
+height: 6px;
+}
+
+.slider-track {
+position:absolute; 
+width:88.8%; 
+border-top:1px solid #fff; 
+top: 64px;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+.floodmap_meetings table {
+    width:100%;
+    -moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+border: solid 3px #000;
+-moz-box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+-webkit-box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+box-shadow: 0 0 8px 2px rgb(209, 209, 209);
+}
+
+
+.floodmap_meetings table tbody tr:nth-child(even) {
+    background-color:rgb(218, 218, 218);
+}
+.floodmap_meetings table tbody tr:nth-child(odd) {
+    background-color:rgb(199, 199, 199);
+}
+
+.floodmap_meetings table tbody tr td {
+padding: 3px 4px 3px 10px !Important;
+width: 95%;
+float: left;
+}
+
+.floodmap_meetings table tbody tr td strong {
+font-weight:600;
+}*/
+
+
+
+
+
+/*CUSTOM SELECT BOX*/
+
+/*.sbHolder{
+	background-color: #000;
+	border: solid 1px #515151;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	height: 30px;
+	position: relative;
+	width: 100%;
+	border-radius: 5px;
+}
+.sbHolder:focus .sbSelector{
+	
+}
+.sbSelector{
+	display: block;
+	height: 30px;
+	left: 0;
+	line-height: 30px;
+	outline: none;
+	overflow: hidden;
+	position: absolute;
+	text-indent: 10px;
+	top: 0;
+	width: 170px;
+}
+.sbSelector:link, .sbSelector:visited, .sbSelector:hover{
+	color: #0CF;
+	outline: none;
+	text-decoration: none;
+}
+.sbToggle{
+	background: url(../images/select-icons.png) 0 -116px no-repeat;
+	display: block;
+	height: 30px;
+	outline: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+}
+.sbToggle:hover{
+	background: url(../images/select-icons.png) 0 -167px no-repeat;
+}
+.sbToggleOpen{
+	background: url(../images/select-icons.png) 0 -16px no-repeat;
+}
+.sbToggleOpen:hover{
+	background: url(../images/select-icons.png) 0 -66px no-repeat;
+}
+.sbHolderDisabled{
+	background-color: #3C3C3C;
+	border: solid 1px #515151;
+}
+.sbHolderDisabled .sbHolder{
+	
+}
+.sbHolderDisabled .sbToggle{
+	
+}
+.sbOptions{
+	background-color: #000;
+	border: solid 1px #515151;
+	list-style: none;
+	left: -1px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 30px;
+	width: 100%;
+	z-index: 1;
+	overflow-y: auto;
+	height: 255px !important;
+    max-height: 255px !important;
+	border-radius: 5px;
+}
+.sbOptions li{
+	padding: 0 7px;
+}
+.sbOptions a{
+	border-bottom: dotted 1px #515151;
+	display: block;
+	outline: none;
+	padding: 13px 0 13px 3px;
+}
+.sbOptions a:link, .sbOptions a:visited{
+	color: #fff;
+	text-decoration: none;
+}
+.sbOptions a:hover,
+.sbOptions a:focus,
+.sbOptions a.sbFocus{
+	color: #0CF;
+}
+.sbOptions li.last a{
+	border-bottom: none;
+}
+.sbOptions .sbDisabled{
+	border-bottom: dotted 1px #515151;
+	color: #999;
+	display: block;
+	padding: 7px 0 7px 3px;
+}
+.sbOptions .sbGroup{
+	border-bottom: dotted 1px #515151;
+	color: ##0CF;
+	display: block;
+	font-weight: bold;
+	padding: 7px 0 7px 3px;
+}
+.sbOptions .sbSub{
+	padding-left: 17px;
+}*/

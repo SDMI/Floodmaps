@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LA FloodMaps - Base Flood Elevation Scenarios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/grids-min.css" />
+    <link rel="stylesheet" href="floodmap_style/scenarios.css" media="all" />
+    <script type="text/javascript" src="Scripts/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="floodmap_javascript/scenarios.js"></script>
+</head>
+<body>
+    <header>
+        <div class="floodmap_title_bar">
+            <a class="btn-help" href="scenarioshelp.html">Help</a>
+            LA FloodMaps <div class="floodmap_title_bar_sub">
+                <span class="fancylabel">Base Flood Elevation Scenarios</span>
+                <span class="betalabel">Beta</span>
+            </div>
+
+        </div>
+        <div id="whatpanel" class="whatpanel">
+            <div class="whatpanel-tip">
+                <p>The information shown in your point data tells you about your exposure to flood and wind hazards, which is important when building, purchasing, or insuring a home or building.</p>
+                <p>
+                    Use this tool to illustrate the relationship between the <strong>Base Flood Elevation</strong>, the <strong>Ground Elevation</strong>, and the lowest floor of <strong>your home or building</strong>.
+                </p>
+            </div>
+        </div>
+    </header>
+    <div class="super">
+        <div class="pure-g-r topBar">
+            <div class="info pure-u-1-4">
+                <h2 class="box-title">Instructions</h2>
+                <p>
+                    <span class="listnum">1</span>Enter the point data you retrieved from the <a href="http://maps.lsuagcenter.com/floodmaps">floodmap</a>.
+                </p>
+                <ul>
+                    <li>Base Flood Elevation (BFE)</li>
+                    <li>Ground Elevation</li>
+                </ul>
+                <p>
+                    <span class="listnum">2</span>Choose the type of foundation for your home or building.
+                </p>
+                <p>
+                    <span class="listnum">3</span>Make any height adjustments that better match your home or building.
+                </p>
+            </div>
+            <div class="userchange pure-u-1-4">
+                <h2 class="box-title">1. Elevations</h2>
+                <div>
+                    <label>Base Flood Elevation (BFE)</label>
+                    <input type="text" id="bfe" class="input user" />
+                </div>
+                <div>
+                    <label>Ground Elevation</label>
+                    <input type="text" id="ge" class="input user" />
+                </div>
+            </div>
+            <div class="houses pure-u-1-4">
+                <h2 class="box-title">2. Foundation style</h2>
+                <div class="houseChoice">
+                    <a href="#ground">
+                        <img src="images/BFES-slabongrade-t.png" alt="" class="choice" />
+                    </a>
+                    <p>Slab-on-Grade</p>
+                </div>
+                <div class="houseChoice">
+                    <a href="#ground">
+                        <img src="images/BFES-crawlspace-t.png" alt="" class="choice" />
+                    </a>
+                    <p>Crawl Space</p>
+                </div>
+                <div class="houseChoice">
+                    <a href="#ground">
+                        <img src="images/BFES-walkunder-t.png" alt="" class="choice" />
+                    </a>
+                    <p>Walk Under</p>
+                </div>
+            </div>
+            <div class="adjustments pure-u-1-4">
+                <div class="adjustmentControls no-show">
+                    <h2 class="box-title">3. Adjustments</h2>
+                    <div>
+                        <label>Adjust your foundation elevation</label>
+                        <input type="text" id="floorAdjust" class="input user adjust" />
+                    </div>
+                    <div class="mathButton inc">+</div>
+                    <div class="mathButton dec">-</div>
+                    <p class="subtext"># feet from ground to first floor</p>
+                </div>
+            </div>
+        </div>
+        <div id="noWater" class="pure-g-r">
+            <div class="pure-u-1 bfe-free">
+                <p>The ground elevation you entered is higher than the BFE, which, if correct, means the ground would not be covered by the base (100-year) flood at this location.</p>
+                <p class="redo">Please check your Ground Elevation and Base Flood Elevation values again. If they are entered correctly and the  property would not be inundated by the base flood, the property can be removed from the Special Flood Hazard Area through a <a href="https://www.fema.gov/floodplain-management/letter-map-amendment-loma">Letter of Map Amendment (LOMA)</a>.  A stamped survey would be required.</p>
+            </div>
+        </div>
+        <div class="pure-g-r results">
+            <div class="border-wrap">
+                <div id="scene" class="scene pure-u-1">
+                    <div class="grid-total">
+                        <div class="grid-unit grid-max">
+                            <span class="yvalue9"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue8"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue7"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue6"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue5"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue4"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue3"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue2"></span>
+                        </div>
+                        <div class="grid-unit">
+                            <span class="yvalue1"></span>
+                        </div>
+                        <div class="grid-unit">
+                        </div>
+                    </div>
+                    <div class="house">
+                        <img id="bighouse" class="bighouse" src="" />
+                    </div>
+                    <div class="sky"></div>
+                    <div id="depth" class="water">
+                        <div class="bfe">BFE: <span class="bfeVal"></span></div>
+                    </div>
+                    <div id="ground" class="ground">
+                        <div class="ge">Ground Elevation: <span class="geVal"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <footer>
+      <label>Unit: <span id="unitOutput"></span>px</label>
+      <label>Height: <span id="heightOutput"></span>px</label>
+      <label>Offset: <span id="offsetOutput"></span>px</label>
+    </footer>-->
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-43366216-1', 'lsuagcenter.com');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+
+</html>

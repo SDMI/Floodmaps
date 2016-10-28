@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="WindSpeedAndElevation" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="WindSpeedAndElevation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="WindSpeedAndElevation">
+      <s:element name="getLAWindSpeed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="X_Value" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Y_Value" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLAWindSpeedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLAWindSpeedResult" type="tns:LABWS_Query" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LABWS_Query">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="X_Value" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Y_Value" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Speed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Units" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="invalid" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getLA_LIDAR_Elevation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="X_Value" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Y_Value" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLA_LIDAR_ElevationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getLA_LIDAR_ElevationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LABWS_Query" nillable="true" type="tns:LABWS_Query" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getLAWindSpeedSoapIn">
+    <wsdl:part name="parameters" element="tns:getLAWindSpeed" />
+  </wsdl:message>
+  <wsdl:message name="getLAWindSpeedSoapOut">
+    <wsdl:part name="parameters" element="tns:getLAWindSpeedResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationSoapIn">
+    <wsdl:part name="parameters" element="tns:getLA_LIDAR_Elevation" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationSoapOut">
+    <wsdl:part name="parameters" element="tns:getLA_LIDAR_ElevationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLAWindSpeedHttpGetIn">
+    <wsdl:part name="X_Value" type="s:string" />
+    <wsdl:part name="Y_Value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getLAWindSpeedHttpGetOut">
+    <wsdl:part name="Body" element="tns:LABWS_Query" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationHttpGetIn">
+    <wsdl:part name="X_Value" type="s:string" />
+    <wsdl:part name="Y_Value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="getLAWindSpeedHttpPostIn">
+    <wsdl:part name="X_Value" type="s:string" />
+    <wsdl:part name="Y_Value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getLAWindSpeedHttpPostOut">
+    <wsdl:part name="Body" element="tns:LABWS_Query" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationHttpPostIn">
+    <wsdl:part name="X_Value" type="s:string" />
+    <wsdl:part name="Y_Value" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getLA_LIDAR_ElevationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="getLAWindSpeed">
+      <wsdl:input message="tns:getLAWindSpeedSoapIn" />
+      <wsdl:output message="tns:getLAWindSpeedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <wsdl:input message="tns:getLA_LIDAR_ElevationSoapIn" />
+      <wsdl:output message="tns:getLA_LIDAR_ElevationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpGet">
+    <wsdl:operation name="getLAWindSpeed">
+      <wsdl:input message="tns:getLAWindSpeedHttpGetIn" />
+      <wsdl:output message="tns:getLAWindSpeedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <wsdl:input message="tns:getLA_LIDAR_ElevationHttpGetIn" />
+      <wsdl:output message="tns:getLA_LIDAR_ElevationHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpPost">
+    <wsdl:operation name="getLAWindSpeed">
+      <wsdl:input message="tns:getLAWindSpeedHttpPostIn" />
+      <wsdl:output message="tns:getLAWindSpeedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <wsdl:input message="tns:getLA_LIDAR_ElevationHttpPostIn" />
+      <wsdl:output message="tns:getLA_LIDAR_ElevationHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLAWindSpeed">
+      <soap:operation soapAction="WindSpeedAndElevation/getLAWindSpeed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <soap:operation soapAction="WindSpeedAndElevation/getLA_LIDAR_Elevation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getLAWindSpeed">
+      <soap12:operation soapAction="WindSpeedAndElevation/getLAWindSpeed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <soap12:operation soapAction="WindSpeedAndElevation/getLA_LIDAR_Elevation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpGet" type="tns:ServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="getLAWindSpeed">
+      <http:operation location="/getLAWindSpeed" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <http:operation location="/getLA_LIDAR_Elevation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpPost" type="tns:ServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="getLAWindSpeed">
+      <http:operation location="/getLAWindSpeed" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLA_LIDAR_Elevation">
+      <http:operation location="/getLA_LIDAR_Elevation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://maps.lsuagcenter.com/LABWS_service/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://maps.lsuagcenter.com/LABWS_service/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpGet" binding="tns:ServiceHttpGet">
+      <http:address location="http://maps.lsuagcenter.com/LABWS_service/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
+      <http:address location="http://maps.lsuagcenter.com/LABWS_service/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

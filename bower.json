@@ -1,0 +1,22 @@
+﻿{
+    "name": "LA-Floodmaps",
+    "version": "1.1.2",
+    "authors": [
+        "Henry Capello <hcapello@lsu.edu>",
+        "Andrew J Garcia <agarcia@agcenter.lsu.edu>",
+        "Pat Skinner <pskinner@agcenter.lsu.edu>"
+    ],
+    "description": "Louisiana Floodmaps",
+    "main": "floodmap_style\page.css",
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+    }
+}
